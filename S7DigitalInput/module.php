@@ -15,7 +15,7 @@ class S7DigitalInput extends IPSModule
 			IPS_CreateVariableProfile('xAan', 0);
 			IPS_SetVariableProfileIcon('xAan', 'Flag');
 			IPS_SetVariableProfileAssociation("xAan",false,"Uit");
-			IPS_SetVariableProfileAssociation("xAan",true,"Aan",,0x00ff00);
+			IPS_SetVariableProfileAssociation("xAan",true,"Aan",'Flag',0x00ff00);
 		}
 
 		if (@IPS_GetVariableProfile('xUit') == false)
@@ -23,7 +23,7 @@ class S7DigitalInput extends IPSModule
 			IPS_CreateVariableProfile('xUit', 0);
 			IPS_SetVariableProfileIcon('xUit', 'Flag');
 			IPS_SetVariableProfileAssociation("xUit",false,"Uit");
-			IPS_SetVariableProfileAssociation("xUit",true,"Aan",,0x00ff00);
+			IPS_SetVariableProfileAssociation("xUit",true,"Aan",Flag,0x00ff00);
 
 		}
 
@@ -40,7 +40,7 @@ class S7DigitalInput extends IPSModule
 			IPS_CreateVariableProfile('xOnbAlarm', 0);
 			IPS_SetVariableProfileIcon('xOnbAlarm', 'Warning');
 			IPS_SetVariableProfileAssociation("xOnbAlarm",false,"");
-			IPS_SetVariableProfileAssociation("xOnbAlarm",true,"",,0xff0000);
+			IPS_SetVariableProfileAssociation("xOnbAlarm",true,"",'Warning',0xff0000);
 		}
 
 		if (@IPS_GetVariableProfile('xAlarm') == false)
@@ -48,7 +48,7 @@ class S7DigitalInput extends IPSModule
 			IPS_CreateVariableProfile('xAlarm', 0);
 			IPS_SetVariableProfileIcon('xAlarm', 'Warning');
 			IPS_SetVariableProfileAssociation("xAlarm",false,"");
-			IPS_SetVariableProfileAssociation("xAlarm",true,"",,0xff0000);
+			IPS_SetVariableProfileAssociation("xAlarm",true,"",'Warning',0xff0000);
 		}
 
 
