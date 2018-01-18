@@ -10,7 +10,7 @@ class S7DigitalInput extends IPSModule
 		$this->RegisterPropertyInteger('sensorInstanceId', 0);
 
 		// Create variable profiles
-		if (@IPS_VariableProfileExits('xAan') == false)
+		if (@IPS_GetVariableProfile('xAan') == false)
 		{
 			IPS_CreateVariableProfile('xAan', 0);
 			IPS_SetVariableProfileIcon('xAan', 'Flag');
@@ -18,7 +18,7 @@ class S7DigitalInput extends IPSModule
 			IPS_SetVariableProfileAssociation("xAan",true,"Aan",0x00ff00);
 		}
 
-		if (@IPS_VariableProfileExits('xUit') == false)
+		if (@IPS_GetVariableProfile('xUit') == false)
 		{
 			IPS_CreateVariableProfile('xUit', 0);
 			IPS_SetVariableProfileIcon('xUit', 'Flag');
@@ -27,7 +27,7 @@ class S7DigitalInput extends IPSModule
 
 		}
 
-		if (@IPS_VariableProfileExits('xMode') == false)
+		if (@IPS_GetVariableProfile('xMode') == false)
 		{
 			IPS_CreateVariableProfile('xUit', 0);
 			IPS_SetVariableProfileIcon('xUit', 'Gear');
@@ -35,7 +35,7 @@ class S7DigitalInput extends IPSModule
 			IPS_SetVariableProfileAssociation("xUit",true,"Manueel");
 		}
 
-		if (@IPS_VariableProfileExits('xOnbAlarm') == false)
+		if (@IPS_GetVariableProfile('xOnbAlarm') == false)
 		{
 			IPS_CreateVariableProfile('xOnbAlarm', 0);
 			IPS_SetVariableProfileIcon('xOnbAlarm', 'Warning');
@@ -43,7 +43,7 @@ class S7DigitalInput extends IPSModule
 			IPS_SetVariableProfileAssociation("xOnbAlarm",true,"",0xff0000);
 		}
 
-		if (@IPS_VariableProfileExits('xAlarm') == false)
+		if (@IPS_GetVariableProfile('xAlarm') == false)
 		{
 			IPS_CreateVariableProfile('xAlarm', 0);
 			IPS_SetVariableProfileIcon('xAlarm', 'Warning');
