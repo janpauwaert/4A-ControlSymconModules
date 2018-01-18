@@ -57,11 +57,11 @@ class S7DigitalInput extends IPSModule
 
 
 		// Create status variables
-		$this->registerVariableBoolean('xAan', 'Input staat aan', 'Aan', 0);
-		$this->registerVariableBoolean('xUit', 'Input staat Uit', 'Uit', 1);
-		$this->registerVariableBoolean('xMode', 'Manuele mode als 1', 'Mode', 2);
-		$this->registerVariableBoolean('xOnbAlarm', 'Er zijn onbevestigde alarmen', 'Onbevestig alarm', 3);
-		$this->registerVariableBoolean('xAlarm', 'Er is een Alarm', 'Alarm', 4);
+		$this->registerVariableBoolean('xAan', 'Input staat aan', 'xAan', 0);
+		$this->registerVariableBoolean('xUit', 'Input staat Uit', 'xUit', 1);
+		$this->registerVariableBoolean('xMode', 'Manuele mode als 1', 'xMode', 2);
+		$this->registerVariableBoolean('xOnbAlarm', 'Er zijn onbevestigde alarmen', 'xOnbAlarm', 3);
+		$this->registerVariableBoolean('xAlarm', 'Er is een Alarm', 'xAlarm', 4);
 
 
 		// Create event
