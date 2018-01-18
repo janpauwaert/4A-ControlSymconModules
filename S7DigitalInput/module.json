@@ -2,7 +2,7 @@
   "id": "{F551C83C-FABA-4B8E-84F8-5F52DE6F3672}",
   "name": "S7DigitalInput",
   "type": 3,
-  "vendor": "4A-Control",
+  "vendor": "jan pauwaert",
   "aliases":
   [
     "S7 Input"
