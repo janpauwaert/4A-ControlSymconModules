@@ -32,7 +32,7 @@ class S7DigitalInput extends IPSModule
 			IPS_CreateVariableProfile('xMode', 0);
 			IPS_SetVariableProfileIcon('xMode', 'Gear');
 			IPS_SetVariableProfileAssociation("xMode",false,"Automatisch",'Gear',0x00ff00);
-			IPS_SetVariableProfileAssociation("xMode",true,"Manueel",'Gear',0x0000ff;
+			IPS_SetVariableProfileAssociation("xMode",true,"Manueel",'Gear',0x0000ff);
 		}
 
 		if (@IPS_GetVariableProfile('xOnbAlarm') == false)
