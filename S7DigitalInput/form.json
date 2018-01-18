@@ -1,0 +1,12 @@
+{
+  "elements":
+  [
+    { "type": "SelectInstance", "name": "sensorInstanceId", "caption": "Sensor instance" },
+    { "type": "Label", "label": "Please select the S7 instance " }
+  ],
+  "status":
+  [
+    { "code": 102, "icon": "active", "caption": "S7 instance valid" },
+    { "code": 200, "icon": "error", "caption": "Invalid S7 instance" }
+  ]
+}
