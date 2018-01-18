@@ -22,7 +22,7 @@ class S7DigitalInput extends IPSModule
 		{
 			IPS_CreateVariableProfile('xUit', 0);
 			IPS_SetVariableProfileIcon('xUit', 'Flag');
-			IPS_SetVariableProfileAssociation("xUit",false,"Uit",'Flag',);
+			IPS_SetVariableProfileAssociation("xUit",false,"Uit",'Flag',0x00ff00);
 			IPS_SetVariableProfileAssociation("xUit",true,"Aan",'Flag',0x00ff00);
 
 		}
