@@ -23,16 +23,16 @@ class S7DigitalInput extends IPSModule
 			IPS_CreateVariableProfile('xUit', 0);
 			IPS_SetVariableProfileIcon('xUit', 'Flag');
 			IPS_SetVariableProfileAssociation("xUit",false,"Uit");
-			IPS_SetVariableProfileAssociation("xUit",true,"Aan",Flag,0x00ff00);
+			IPS_SetVariableProfileAssociation("xUit",true,"Aan",'Flag',0x00ff00);
 
 		}
 
 		if (@IPS_GetVariableProfile('xMode') == false)
 		{
-			IPS_CreateVariableProfile('xUit', 0);
-			IPS_SetVariableProfileIcon('xUit', 'Gear');
-			IPS_SetVariableProfileAssociation("xUit",false,"Automatisch");
-			IPS_SetVariableProfileAssociation("xUit",true,"Manueel");
+			IPS_CreateVariableProfile('xMode', 0);
+			IPS_SetVariableProfileIcon('xMode', 'Gear');
+			IPS_SetVariableProfileAssociation("xMode",false,"Automatisch");
+			IPS_SetVariableProfileAssociation("xMode",true,"Manueel");
 		}
 
 		if (@IPS_GetVariableProfile('xOnbAlarm') == false)
