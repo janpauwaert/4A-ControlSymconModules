@@ -7,8 +7,8 @@ class S7DigitalInput extends IPSModule
 		// Never delete this line
 		parent::Create();
 
-		$this -> RegisterPropertyInteger ( "InputType" , 1 ) ;
-		$this -> RegisterPropertyInteger ( "Id" , 1 ) ;
+		$this -> RegisterPropertyInteger ( "InputType" , 0 ) ;
+		$this -> RegisterPropertyInteger ( "Id" , 0 ) ;
 
 		// Create variable profiles
 		if (@IPS_GetVariableProfile('xAan') == false)
