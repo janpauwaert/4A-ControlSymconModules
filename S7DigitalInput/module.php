@@ -76,7 +76,7 @@ class S7DigitalInput extends IPSModule
 	{
 		// Never delete this line
 		parent::ApplyChanges();
-		$this->SendDebug("get property:", "Input Type:" . $this->InstanceID, 0);
+		$this->SendDebug("get property:", "Input  Type:" . $this->InstanceID, 0);
 		$this->SendDebug("get property:", "Input Type:" . IPS_GetProperty ( $this->InstanceID, "InputType" ), 0);
 		$this->SendDebug("get property:", "Input Id:" . IPS_GetProperty ( $this->InstanceID, "Id" ), 0);
 		// create s7 input instance
