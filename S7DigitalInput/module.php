@@ -57,9 +57,10 @@ class S7DigitalInput extends IPSModule
 
 		$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
 
-		IPS_SetName ( $InsID , "S7_Input" );//.  echo IPS_GetProperty ( $this , "InputType" ) ;  // noem de instantie
+		IPS_SetName ( $InsID , "S7_Input" .  echo IPS_GetProperty ( $this , "Id" ) ;  // noem de instantie
  		IPS_SetParent ( $InsID , 0 ) ;  // sorteer instantie onder object met objectID "12345"
-		IPS_SetConfiguration ( $InsID , '{"DataType":1,"Area":7,"AreaAddress":1000,"Address":0,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}' ) ;
+ 		$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', IPS_GetProperty ( 40585 , "Id" )*2)
+		IPS_SetConfiguration ( $InsID , $config) ;
 		IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
 
 
