@@ -61,6 +61,7 @@ class S7DigitalInput extends IPSModule
 
 
 		// Create event
+
 		if ($this->getUpdateEventId() == false)
 		{
 			$eventId = IPS_CreateEvent(0);
@@ -72,16 +73,16 @@ class S7DigitalInput extends IPSModule
 		}		
 
 		// create s7 input instance
-		if (IPS_GetProperty ( $this->InstanceID, "InputType" ) == 1)
+		if ($this->ReadPropertyInteger("InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
-			IPS_SetName ( $InsID , "S7_Input" ."_".  IPS_GetProperty ( $this->InstanceID, "Id" ));  // noem de instantie
+			IPS_SetName ( $InsID , "S7_Input" ."_".  $this->ReadPropertyInteger("InputType" ));  // noem de instantie
  			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder object met objectID "12345"
- 			$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', IPS_GetProperty ( $this->InstanceID, "Id" )*2);
+ 			$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', $this->ReadPropertyInteger("InputType" )*2);
 			IPS_SetConfiguration ( $InsID , $config) ;
 			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
 		}
-		
+
 	}
 
 	public function ApplyChanges()
