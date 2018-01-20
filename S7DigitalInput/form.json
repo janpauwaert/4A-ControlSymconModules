@@ -8,8 +8,8 @@
          { "label" : "Analog input" , "value" : 3 } ,
          { "label" : "Analog Output" , "value" : 4 }
       ]
-      }
-    { "type" : "NumberSpinner" , "name" : "ID" , "caption" : "Nummer" }
+      },
+    { "type" : "NumberSpinner" , "name" : "ID" , "caption" : "Nummer" },
 
     { "type": "Label", "label": "Please select the S7 Input type " }
   ],
