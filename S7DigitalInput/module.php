@@ -78,7 +78,7 @@ class S7DigitalInput extends IPSModule
 		parent::ApplyChanges();
 
 		// create s7 input instance
-		if (IPS_GetProperty ( $this->InstanceID, "InputType" ) == 1)
+		if (IPS_GetProperty ( $this->InstanceID, "InputType" ) == 2)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
 			IPS_SetName ( $InsID , "S7_Input" ."_".  IPS_GetProperty ( $this->InstanceID, "Id" ));  // noem de instantie
