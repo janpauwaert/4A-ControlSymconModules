@@ -76,11 +76,14 @@ class S7DigitalInput extends IPSModule
 	{
 		// Never delete this line
 		parent::ApplyChanges();
+		if ($sensorId = $this->ReadPropertyInteger('Id'))
+		{
+
 		$this->SendDebug("get property:", "Input  Type:" . $this->InstanceID, 0);
-		$this->SendDebug("get property:", "Input Type:" . IPS_GetProperty ( $this->InstanceID, "InputType" ), 0);
 		$this->SendDebug("get property:", "Input Id:" . IPS_GetProperty ( $this->InstanceID, "Id" ), 0);
+
 		// create s7 input instance
-		if (IPS_GetProperty ( $this->InstanceID, "InputType" ) == 2)
+		if (IPS_GetProperty ( $this->InstanceID, "InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
 			IPS_SetName ( $InsID , "S7_Input" ."_".  IPS_GetProperty ( $this->InstanceID, "Id" ));  // noem de instantie
