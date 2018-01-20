@@ -14,7 +14,7 @@ class S7DigitalInput extends IPSModule
 		{
 			IPS_CreateVariableProfile('xAan', 0);
 			IPS_SetVariableProfileIcon('xAan', 'Flag');
-			IPS_SetVariableProfileAssociation("xAan",false,"Uit");
+			IPS_SetVariableProfileAssociation("xAan",false,"Uit",'flag',0xa0a0a0);
 			IPS_SetVariableProfileAssociation("xAan",true,"Aan",'Flag',0x00ff00);
 		}
 
@@ -22,7 +22,7 @@ class S7DigitalInput extends IPSModule
 		{
 			IPS_CreateVariableProfile('xUit', 0);
 			IPS_SetVariableProfileIcon('xUit', 'Flag');
-			IPS_SetVariableProfileAssociation("xUit",false,"Uit",'Flag',0x00ff00);
+			IPS_SetVariableProfileAssociation("xUit",false,"Uit",'Flag',0xa0a0a0);
 			IPS_SetVariableProfileAssociation("xUit",true,"Aan",'Flag',0x00ff00);
 
 		}
@@ -39,16 +39,16 @@ class S7DigitalInput extends IPSModule
 		{
 			IPS_CreateVariableProfile('xOnbAlarm', 0);
 			IPS_SetVariableProfileIcon('xOnbAlarm', 'Warning');
-			IPS_SetVariableProfileAssociation("xOnbAlarm",false,"geen onbevestigd alarm",'Warning',0xff0000);
-			IPS_SetVariableProfileAssociation("xOnbAlarm",true,"er is een onbevestigd alarm",'Warning',0xff0000);
+			IPS_SetVariableProfileAssociation("xOnbAlarm",false,"OK",'',0xa0a0a0);
+			IPS_SetVariableProfileAssociation("xOnbAlarm",true,"Onb Alarm",'Warning',0xff0000);
 		}
 
 		if (@IPS_GetVariableProfile('xAlarm') == false)
 		{
 			IPS_CreateVariableProfile('xAlarm', 0);
 			IPS_SetVariableProfileIcon('xAlarm', 'Warning');
-			IPS_SetVariableProfileAssociation("xAlarm",false,"",'Warning',0xff0000);
-			IPS_SetVariableProfileAssociation("xAlarm",true,"er is een Alarm",'Warning',0xff0000);
+			IPS_SetVariableProfileAssociation("xAlarm",false,"OK",'',0xa0a0a0);
+			IPS_SetVariableProfileAssociation("xAlarm",true,"Alarm",'Warning',0xff0000);
 		}
 
 
@@ -57,11 +57,11 @@ class S7DigitalInput extends IPSModule
 
 
 		// Create status variables
-		$this->registerVariableBoolean('xAan', 'Input staat aan', 'xAan', 0);
-		$this->registerVariableBoolean('xUit', 'Input staat Uit', 'xUit', 1);
-		$this->registerVariableBoolean('xMode', 'Manuele mode als 1', 'xMode', 2);
-		$this->registerVariableBoolean('xOnbAlarm', 'Er zijn onbevestigde alarmen', 'xOnbAlarm', 3);
-		$this->registerVariableBoolean('xAlarm', 'Er is een Alarm', 'xAlarm', 4);
+		$this->registerVariableBoolean('xAan', 'Input Aan', 'xAan', 0);
+		$this->registerVariableBoolean('xUit', 'Input Uit', 'xUit', 1);
+		$this->registerVariableBoolean('xMode', 'Mode', 'xMode', 2);
+		$this->registerVariableBoolean('xOnbAlarm', 'Onbevestigde Alarm', 'xOnbAlarm', 3);
+		$this->registerVariableBoolean('xAlarm', 'Alarm', 'xAlarm', 4);
 
 
 		// Create event
