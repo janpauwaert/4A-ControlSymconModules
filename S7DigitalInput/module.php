@@ -53,11 +53,11 @@ class S7DigitalInput extends IPSModule
 		}
 
 		// create s7 input or output instance
-		if (IPS_GetProperty ( $this->InstanceID, "Id" ) == 1)
+		if (IPS_GetProperty ( $this->InstanceID, "InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
 			IPS_SetName ( $InsID , "S7_Input" .  IPS_GetProperty ( $this->InstanceID, "Id" ));  // noem de instantie
- 			IPS_SetParent ( $InsID , 0 ) ;  // sorteer instantie onder object met objectID "12345"
+ 			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder object met objectID "12345"
  			$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', IPS_GetProperty ( $this->InstanceID, "Id" )*2);
 			IPS_SetConfiguration ( $InsID , $config) ;
 			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
