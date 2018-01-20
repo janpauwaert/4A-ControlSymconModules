@@ -7,7 +7,8 @@ class S7DigitalInput extends IPSModule
 		// Never delete this line
 		parent::Create();
 
-		$this->RegisterPropertyInteger('sensorInstanceId', 0);
+		$this -> RegisterPropertyInteger ( "InputType" , 1 ) ;
+		$this -> RegisterPropertyInteger ( "Id" , 1 ) ;
 
 		// Create variable profiles
 		if (@IPS_GetVariableProfile('xAan') == false)
@@ -52,8 +53,11 @@ class S7DigitalInput extends IPSModule
 		}
 
 
+		// create s7 input or output instance
 
-
+		$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
+		IPS_SetConfiguration ( $InsID , '{"DataType":1,"Area":7,"AreaAddress":1000,"Address":0,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}' ) ;
+		IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
 
 
 		// Create status variables

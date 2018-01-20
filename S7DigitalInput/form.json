@@ -1,12 +1,22 @@
 {
   "elements":
   [
-    { "type": "SelectInstance", "name": "sensorInstanceId", "caption": "Sensor instance" },
-    { "type": "Label", "label": "Please select the S7 instance " }
+     { "type" : "Select" , "name" : "InputType" , "caption" : "Input Type" ,
+     "options" : [
+         { "label" : "Digital Input" , "value" : 1 } ,
+         { "label" : "Digital Output" , "value" : 2 } ,
+         { "label" : "Analog input" , "value" : 3 } ,
+         { "label" : "Analog Output" , "value" : 4 }
+      ]
+      }
+    { "type" : "NumberSpinner" , "name" : "ID" , "caption" : "Nummer" }
+
+    { "type": "Label", "label": "Please select the S7 Input type " }
   ],
+
   "status":
   [
-    { "code": 102, "icon": "active", "caption": "S7 instance valid" },
+    { "code": 102, "icon": "active", "caption": "S7 input valid" },
     { "code": 200, "icon": "error", "caption": "Invalid S7 instance" }
   ]
 }
