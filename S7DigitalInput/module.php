@@ -1,4 +1,5 @@
 <?
+ IPSUtils_Include   ( "IPSLogger.inc.php" ,   "IPSLibrary::app::core::IPSLogger" ) ; 
 
 class S7DigitalInput extends IPSModule
 {
@@ -73,6 +74,7 @@ class S7DigitalInput extends IPSModule
 		}		
 
 		// create s7 input instance
+		IPSLogger_Dbg ( __file__ ,   $this->ReadPropertyInteger("InputType" ) ) ; 
 		if ($this->ReadPropertyInteger("InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
@@ -89,6 +91,7 @@ class S7DigitalInput extends IPSModule
 	{
 		// Never delete this line
 		parent::ApplyChanges();
+		IPSLogger_Dbg ( __file__ ,   $this->ReadPropertyInteger("InputType" ) ) ; 
 		if ($sensorId = $this->ReadPropertyInteger('Id'))
 		{
 
