@@ -75,7 +75,8 @@ class S7DigitalInput extends IPSModule
 		}		
 
 		// create s7 input instance
-		if 
+		if ($this->getUpdateS7Id()==false)
+		{
 		if ($this->ReadPropertyInteger("InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
@@ -83,7 +84,7 @@ class S7DigitalInput extends IPSModule
  			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder dit object
  			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
 		}
-
+		}
 	}
 
 	public function ApplyChanges()
@@ -111,7 +112,7 @@ class S7DigitalInput extends IPSModule
 		// Sleep for two seconds to make sure all variables of the sensor instance have been updated
 		//IPS_Sleep(2000);
 
-		$variableId =  @IPS_GetInstanceIDByName('S7_PLC_Connection',$this->InstanceID);
+		$variableId =  $this->getUpdateS7Id();
 		IPSLogger_Dbg ( __file__ , $this->InstanceID ) ;
 		IPSLogger_Dbg ( __file__ , $variableId ) ;
 		if ($variableId)
@@ -214,7 +215,7 @@ class S7DigitalInput extends IPSModule
 	*/
 	private function getUpdateS7Id()
 	{
-		return @IPS_GetObjectIDByIdent('S7_PLC_Connection', $this->InstanceID);
+		return @IPS_GetInstanceIDByName('S7_PLC_Connection',$this->InstanceID);
 
 	}
 
