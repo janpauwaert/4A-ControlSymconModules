@@ -75,7 +75,7 @@ class S7DigitalInput extends IPSModule
 		}		
 
 		// create s7 input instance
-		IPSLogger_Dbg ( __file__ ,   $this->ReadPropertyInteger("InputType" ) ) ; 
+		if 
 		if ($this->ReadPropertyInteger("InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
@@ -111,7 +111,7 @@ class S7DigitalInput extends IPSModule
 		// Sleep for two seconds to make sure all variables of the sensor instance have been updated
 		//IPS_Sleep(2000);
 
-		$variableId = $this->GetIDForIdent('S7_PLC_Connection');
+		$variableId =  @IPS_GetInstanceIDByName('S7_PLC_Connection',$this->InstanceID);
 		IPSLogger_Dbg ( __file__ , $this->InstanceID ) ;
 		IPSLogger_Dbg ( __file__ , $variableId ) ;
 		if ($variableId)
