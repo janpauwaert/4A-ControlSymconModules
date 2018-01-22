@@ -118,7 +118,7 @@ class S7DigitalInput extends IPSModule
 
 			$stData				= str_pad(bindec($bData), 8, 0, STR_PAD_LEFT);
 			IPSLogger_Dbg ( __file__ ,  $stData )
-			for ($i = 1; $i <= 9; $i++) {
+			for ($i = 0; $i <= 9; $i++) {
     			switch ($i) {
     				case 0: //alarm
     					
