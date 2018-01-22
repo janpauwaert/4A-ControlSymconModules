@@ -112,7 +112,7 @@ class S7DigitalInput extends IPSModule
 		//IPS_Sleep(2000);
 
 		$variableId 				= $this->getUpdateS7Id(); 
-
+		IPSLogger_Dbg ( __file__ ,   $variableId) ; 
 		if ($variableId)
 		{
 			$bData				= GetValueInteger($variableId);
