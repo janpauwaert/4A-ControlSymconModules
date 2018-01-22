@@ -115,11 +115,13 @@ class S7DigitalInput extends IPSModule
 		if ($variableId)
 		{
 			$bData				= GetValueInteger($variableId);
-			$stData				= str_pad(bindec($bData), 8, 0, STR_PAD_LEFT);
 
+			$stData				= str_pad(bindec($bData), 8, 0, STR_PAD_LEFT);
+			IPSLogger_Dbg ( __file__ ,  $stData )
 			for ($i = 1; $i <= 9; $i++) {
     			switch ($i) {
     				case 0: //alarm
+    					
 				        SetValueBoolean($this->GetIDForIdent('xAlarm'),substr($stData, 0, 1));
 				        break;
 				    case 1: //onbevesdtigde alarm
