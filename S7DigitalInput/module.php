@@ -111,7 +111,7 @@ class S7DigitalInput extends IPSModule
 		// Sleep for two seconds to make sure all variables of the sensor instance have been updated
 		//IPS_Sleep(2000);
 
-		$variableId = @IPS_GetObjectIDByIdent('S7_PLC_Connection', $this->InstanceID);
+		$variableId = $this->GetIDForIdent('S7_PLC_Connection');
 		IPSLogger_Dbg ( __file__ , $this->InstanceID ) ;
 		IPSLogger_Dbg ( __file__ , $variableId ) ;
 		if ($variableId)
@@ -215,8 +215,6 @@ class S7DigitalInput extends IPSModule
 	private function getUpdateS7Id()
 	{
 		return @IPS_GetObjectIDByIdent('S7_PLC_Connection', $this->InstanceID);
-		IPSLogger_Dbg ( __file__ , $this->InstanceID ) ;
-		IPSLogger_Dbg ( __file__ , 'get update' ) ;
 
 	}
 
