@@ -164,7 +164,7 @@ class S7DigitalInput extends IPSModule
 		{ 
 			$eventId = $this->getUpdateEventId(); 
  
-			IPS_SetEventTrigger($eventId, 0, $variableId); 
+			IPS_SetEventTrigger($eventId, 1, $variableId); 
 			IPS_SetEventActive($eventId, true); 
 			IPS_SetEventScript($eventId, "S7OBJ_ProcessValues(" . $this->InstanceID . ");"); 
 		} 
