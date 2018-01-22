@@ -112,7 +112,7 @@ class S7DigitalInput extends IPSModule
 
 		$variableId 				= $this->getUpdateS7Id(); 
 
-		if ($VariableId)
+		if ($variableId)
 		{
 			$bData				= GetValueInteger($variableId);
 			$stData				= str_pad(bindec($bData), 8, 0, STR_PAD_LEFT);
