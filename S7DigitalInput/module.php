@@ -112,13 +112,13 @@ class S7DigitalInput extends IPSModule
 		//IPS_Sleep(2000);
 
 		$variableId =  $this->getUpdateS7Id();
-		IPSLogger_Dbg ( __file__ ,  $variableId );
+		//IPSLogger_Dbg ( __file__ ,  $variableId );
 		if ($variableId)
 		{
 			$bData				= GetValueInteger($variableId);
 
 			$stData				= str_pad(decbin($bData), 8, 0, STR_PAD_LEFT);
-			IPSLogger_Dbg ( __file__ ,  $stData );
+			//IPSLogger_Dbg ( __file__ ,  $stData );
 			for ($i = 0; $i <= 9; $i++) {
     			switch ($i) {
     				case 0: //alarm
@@ -158,8 +158,8 @@ class S7DigitalInput extends IPSModule
 	private function setUpdateEvent()
 	{
 		$variableId = $this->getUpdateS7Id(); 
-  		IPSLogger_Dbg ( __file__ ,   'update event' ) ;
-  		IPSLogger_Dbg ( __file__ ,  $variableId ) ;
+  		//IPSLogger_Dbg ( __file__ ,   'update event' ) ;
+  		//IPSLogger_Dbg ( __file__ ,  $variableId ) ;
 		if ($variableId) 
 		{ 
 			$eventId = $this->getUpdateEventId(); 
