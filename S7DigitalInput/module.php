@@ -171,7 +171,7 @@ class S7DigitalInput extends IPSModule
 	Private function setUpdateS7Connection()
 	{
 		$InsID = $this->getUpdateS7Id(); 
-  
+  		IPSLogger_Dbg ( __file__ ,   $this->ReadPropertyInteger("InputType" ) ) ;
 		if ($InsID) 
 		{ 
 			switch ($this->ReadPropertyInteger("InputType" )) {
