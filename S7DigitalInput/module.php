@@ -112,7 +112,7 @@ class S7DigitalInput extends IPSModule
 		// Sleep for two seconds to make sure all variables of the sensor instance have been updated
 		//IPS_Sleep(2000);
 
-		$variableId =  $this->getUpdateS7Id();
+		$variableId =  @IPS_GetVariableIDByName("Value", $this->getUpdateS7Id();
 		IPSLogger_Dbg ( __file__ , $this->InstanceID ) ;
 		IPSLogger_Dbg ( __file__ , $variableId ) ;
 		if ($variableId)
@@ -126,7 +126,7 @@ class S7DigitalInput extends IPSModule
 				        SetValueBoolean($this->GetIDForIdent('xAlarm'),substr($stData, 0, 1));
 				        break;
 				    case 1: //onbevesdtigde alarm
-				        eSetValueBoolean($this->GetIDForIdent('xOnbAlarm'),substr($stData, 1, 1));
+				        SetValueBoolean($this->GetIDForIdent('xOnbAlarm'),substr($stData, 1, 1));
 				        break;
 				    case 4: //mode
 				        SetValueBoolean($this->GetIDForIdent('xMode'),substr($stData, 4, 1));
