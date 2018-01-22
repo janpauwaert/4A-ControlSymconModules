@@ -100,6 +100,54 @@ class S7DigitalInput extends IPSModule
 
 	}
 
+	/** Processes sensor readings and updates the status variables
+	  * @return bool: true if successful, false on failure
+	  */
+	public function ProcessValues()
+	{
+		$success = false;
+
+		// Sleep for two seconds to make sure all variables of the sensor instance have been updated
+		//IPS_Sleep(2000);
+
+		$variableId 				= $this->getUpdateS7Id(); 
+
+		if ($VariableId)
+		{
+			$bData				= GetValueInteger($variableId);
+			$stData				= str_pad(bindec($bData);, 8, 0, STR_PAD_LEFT);
+
+			for ($i = 1; $i <= 9; $i++) {
+    			switch ($i) {
+    				case 0: //alarm
+				        SetValueBoolean($this->GetIDForIdent('xAlarm'),substr($stData, 0, 1));
+				        break;
+				    case 1: //onbevesdtigde alarm
+				        eSetValueBoolean($this->GetIDForIdent('xOnbAlarm'),substr($stData, 1, 1));
+				        break;
+				    case 4: //mode
+				        SetValueBoolean($this->GetIDForIdent('xMode'),substr($stData, 4, 1));
+				        break;
+				    case 5: //mode
+				        SetValueBoolean($this->GetIDForIdent('xUit'),substr($stData, 5, 1));
+				        break;
+					case 6: //uit
+				        SetValueBoolean($this->GetIDForIdent('xAan'),substr($stData, 6, 1));
+				        break;
+				}
+			}
+			$success = true;
+			$this->SetStatus(102);
+		}
+		else
+		{
+			// Incompatible instance
+			$this->setStatus(200);
+		}
+
+		return $success;
+	}
+
 	/** Sets the source variable and action of the trigger event 
 	*/ 
 
