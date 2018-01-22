@@ -8,6 +8,7 @@ class S7DigitalInput extends IPSModule
 		// Never delete this line
 		parent::Create();
 
+		// Create Property
 		$this -> RegisterPropertyInteger ( "InputType" , 1 ) ;
 		$this -> RegisterPropertyInteger ( "Id" , 0 ) ;
 
@@ -16,7 +17,7 @@ class S7DigitalInput extends IPSModule
 		{
 			IPS_CreateVariableProfile('xAan', 0);
 			IPS_SetVariableProfileIcon('xAan', 'Flag');
-			IPS_SetVariableProfileAssociation("xAan",false,"Uit",'flag',0xa0a0a0);
+			IPS_SetVariableProfileAssociation("xAan",false,"Uit",'Flag',0xa0a0a0);
 			IPS_SetVariableProfileAssociation("xAan",true,"Aan",'Flag',0x00ff00);
 		}
 
@@ -78,11 +79,9 @@ class S7DigitalInput extends IPSModule
 		if ($this->ReadPropertyInteger("InputType" ) == 1)
 		{
 			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
-			IPS_SetName ( $InsID , "S7_Input" ."_".  $this->ReadPropertyInteger("InputType" ));  // noem de instantie
- 			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder object met objectID "12345"
- 			$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', $this->ReadPropertyInteger("InputType" )*2);
-			IPS_SetConfiguration ( $InsID , $config) ;
-			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
+			IPS_SetName ( $InsID , "S7_PLC_Connection");  // noem de instantie
+ 			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder dit object
+ 			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
 		}
 
 	}
@@ -91,15 +90,65 @@ class S7DigitalInput extends IPSModule
 	{
 		// Never delete this line
 		parent::ApplyChanges();
-		IPSLogger_Dbg ( __file__ ,   $this->ReadPropertyInteger("InputType" ) ) ; 
-		if ($sensorId = $this->ReadPropertyInteger('Id'))
-		{
 
-		$this->SendDebug("get property:", "Input  Type:" . $this->InstanceID, 0);
-		$this->SendDebug("get property:", "Input Id:" . IPS_GetProperty ( $this->InstanceID, "Id" ), 0);
+		// Validate if compatible instance id was selected and set update event 
+ 		if ($this->ProcessValues() == true) 
+ 		{ 
+ 			$this->setUpdateEvent(); 
+ 			$this->setUpdateS7Connection();
+ 		} 
+
+	}
+
+	/** Sets the source variable and action of the trigger event 
+	*/ 
+
+
+	private function setUpdateEvent()
+	{
+		$variableId = $this->getUpdateS7Id(); 
+  
+		if ($variableId) 
+		{ 
+			$eventId = $this->getUpdateEventId(); 
+ 
+			IPS_SetEventTrigger($eventId, 0, $variableId); 
+			IPS_SetEventActive($eventId, true); 
+			IPS_SetEventScript($eventId, "S7OBJ_ProcessValues(" . $this->InstanceID . ");"); 
+		} 
+
+	}
+
+	Private function setUpdateS7Connection()
+	{
+		$InsID = $this->getUpdateS7Id(); 
+  
+		if ($InsID) 
+		{ 
+			switch ($this->ReadPropertyInteger("InputType" )) {
+    			case 1:
+			        $InputType = 'Digital_Input_';
+			        $Address = 0+($this->ReadPropertyInteger("Id" )*2);
+			        break;
+			    case 2:
+			        $InputType = 'Digital_Output_';
+			        $Address = 100+($this->ReadPropertyInteger("Id" )*2);
+			        break;
+			    case 3:
+			        $InputType = 'Analog_Input_';
+			        $Address = 200+($this->ReadPropertyInteger("Id" )*2);
+			        break;
+			    case 4:
+			        $InputType = 'Analog_Output_';
+			        $Address = 230+($this->ReadPropertyInteger("Id" )*2);
+			        break;
+			    }
+
+			//IPS_SetName ( $InsID , sprintf("S7_PLC_Connection_%s_%s"),$InputType,$this->ReadPropertyInteger("Id"));  // noem de instantie volgens het type en nr
+			$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', $Address);
+			IPS_SetConfiguration ( $InsID , $config) ;
+			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
 		}
-
-
 	}
 
 	/** Returns object id for update event
@@ -109,5 +158,15 @@ class S7DigitalInput extends IPSModule
 	{
 		return @IPS_GetObjectIDByIdent('updateEvent', $this->InstanceID);
 	}
-	
+
+	/** Returns object id for S7_PLC_Connection
+	* @return int
+	*/
+	private function getUpdateS7Id()
+	{
+		return @IPS_GetObjectIDByIdent('S7_PLC_Connection', $this->InstanceID);
+	}
+
+
+
 }
