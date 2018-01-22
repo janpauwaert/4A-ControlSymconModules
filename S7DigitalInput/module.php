@@ -115,7 +115,7 @@ class S7DigitalInput extends IPSModule
 		if ($VariableId)
 		{
 			$bData				= GetValueInteger($variableId);
-			$stData				= str_pad(bindec($bData);, 8, 0, STR_PAD_LEFT);
+			$stData				= str_pad(bindec($bData), 8, 0, STR_PAD_LEFT);
 
 			for ($i = 1; $i <= 9; $i++) {
     			switch ($i) {
