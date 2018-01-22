@@ -215,6 +215,7 @@ class S7DigitalInput extends IPSModule
 	{
 		return @IPS_GetObjectIDByIdent('S7_PLC_Connection', $this->InstanceID);
 		IPSLogger_Dbg ( __file__ , $this->InstanceID ) ;
+		IPSLogger_Dbg ( __file__ , 'get update' ) ;
 
 	}
 
