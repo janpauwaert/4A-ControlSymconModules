@@ -106,6 +106,7 @@ class S7DigitalInput extends IPSModule
 	public function ProcessValues()
 	{
 		$success = false;
+		IPSLogger_Dbg ( __file__ ,   'process' ) ; 
 
 		// Sleep for two seconds to make sure all variables of the sensor instance have been updated
 		//IPS_Sleep(2000);
