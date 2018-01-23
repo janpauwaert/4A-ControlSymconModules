@@ -93,11 +93,11 @@ class S7DigitalInput extends IPSModule
 		parent::ApplyChanges();
 
 		// Validate if compatible instance id was selected and set update event 
- 		if ($this->ProcessValues() == true) 
+ 		/*if ($this->ProcessValues() == true) 
  		{ 
- 			//$this->setUpdateEvent(); 
- 			//$this->setUpdateS7Connection();
- 		} 
+ 			$this->setUpdateEvent(); 
+ 			$this->setUpdateS7Connection();
+ 		} */
 
 	}
 
