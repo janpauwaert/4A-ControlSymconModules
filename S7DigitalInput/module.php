@@ -74,17 +74,7 @@ class S7DigitalInput extends IPSModule
 			IPS_SetPosition($eventId, 5);
 		}		
 
-		// create s7 input instance
-		if ($this->getUpdateS7Id()==false)
-		{
-		if ($this->ReadPropertyInteger("InputType" ) == 1)
-		{
-			$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
-			IPS_SetName ( $InsID , "S7_PLC_Connection");  // noem de instantie
- 			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder dit object
- 			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
-		}
-		}
+
 	}
 
 	public function ApplyChanges()
@@ -92,12 +82,13 @@ class S7DigitalInput extends IPSModule
 		// Never delete this line
 		parent::ApplyChanges();
 
+		$this->setUpdateS7Connection();
 		// Validate if compatible instance id was selected and set update event 
- 		/*if ($this->ProcessValues() == true) 
+ 		if ($this->ProcessValues() == true) 
  		{ 
  			$this->setUpdateEvent(); 
- 			$this->setUpdateS7Connection();
- 		} */
+ 
+ 		} 
 
 	}
 
@@ -173,33 +164,40 @@ class S7DigitalInput extends IPSModule
 
 	Private function setUpdateS7Connection()
 	{
-		$InsID = @IPS_GetInstanceIDByName('S7_PLC_Connection',$this->InstanceID); 
-  		IPSLogger_Dbg ( __file__ ,   $this->ReadPropertyInteger("InputType" ) ) ;
-		if ($InsID) 
-		{ 
-			switch ($this->ReadPropertyInteger("InputType" )) {
-    			case 1:
-			        $InputType = 'Digital_Input_';
-			        $Address = 0+($this->ReadPropertyInteger("Id" )*2);
-			        break;
-			    case 2:
-			        $InputType = 'Digital_Output_';
-			        $Address = 100+($this->ReadPropertyInteger("Id" )*2);
-			        break;
-			    case 3:
-			        $InputType = 'Analog_Input_';
-			        $Address = 200+($this->ReadPropertyInteger("Id" )*2);
-			        break;
-			    case 4:
-			        $InputType = 'Analog_Output_';
-			        $Address = 230+($this->ReadPropertyInteger("Id" )*2);
-			        break;
-			    }
+				// create s7 input instance
+		if ($this->getUpdateS7Id()==false)
+		{
+			if ($this->ReadPropertyInteger("InputType" ) == 1)
+			{
+				$InsID = IPS_CreateInstance ( "{932076B1-B18E-4AB6-AB6D-275ED30B62DB}" ) ;
+				IPS_SetName ( $InsID , "S7_PLC_Connection");  // noem de instantie
+	 			IPS_SetParent ( $InsID , $this->InstanceID ) ;  // sorteer instantie onder dit object
+	 			//IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
+				switch ($this->ReadPropertyInteger("InputType" )) {
+	    			case 1:
+				        $InputType = 'Digital_Input_';
+				        $Address = 0+($this->ReadPropertyInteger("Id" )*2);
+				        break;
+				    case 2:
+				        $InputType = 'Digital_Output_';
+				        $Address = 100+($this->ReadPropertyInteger("Id" )*2);
+				        break;
+				    case 3:
+				        $InputType = 'Analog_Input_';
+				        $Address = 200+($this->ReadPropertyInteger("Id" )*2);
+				        break;
+				    case 4:
+				        $InputType = 'Analog_Output_';
+				        $Address = 230+($this->ReadPropertyInteger("Id" )*2);
+				        break;
+				 }
 
-			//IPS_SetName ( $InsID , sprintf("S7_PLC_Connection_%s_%s"),$InputType,$this->ReadPropertyInteger("Id"));  // noem de instantie volgens het type en nr
-			$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', $Address);
-			IPS_SetConfiguration ( $InsID , $config) ;
-			IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
+				//IPS_SetName ( $InsID , sprintf("S7_PLC_Connection_%s_%s"),$InputType,$this->ReadPropertyInteger("Id"));  // noem de instantie volgens het type en nr
+				$config = sprintf('{"DataType":1,"Area":7,"AreaAddress":1000,"Address":%s,"Bit":0,"Length":0,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}', $Address);
+				IPS_SetConfiguration ( $InsID , $config) ;
+				IPS_ApplyChanges ( $InsID ) ;  // accepteer nieuwe configuratie 
+			}
+		
 		}
 	}
 
