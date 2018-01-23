@@ -95,8 +95,8 @@ class S7DigitalInput extends IPSModule
 		// Validate if compatible instance id was selected and set update event 
  		if ($this->ProcessValues() == true) 
  		{ 
- 			$this->setUpdateEvent(); 
- 			$this->setUpdateS7Connection();
+ 			//$this->setUpdateEvent(); 
+ 			//$this->setUpdateS7Connection();
  		} 
 
 	}
