@@ -1,0 +1,20 @@
+{
+  "elements":
+  [
+     { "type" : "Select" , "name" : "InputType" , "caption" : "Input Type" ,
+     "options" : [
+         { "label" : "Digital Input" , "value" : 1 } ,
+         { "label" : "Analog input" , "value" : 2 } ,
+      ]
+      },
+    { "type" : "NumberSpinner" , "name" : "ID" , "caption" : "Nummer" },
+
+    { "type": "Label", "label": "Please select the S7 Input type " }
+  ],
+
+  "status":
+  [
+    { "code": 102, "icon": "active", "caption": "S7 input valid" },
+    { "code": 200, "icon": "error", "caption": "Invalid S7 instance" }
+  ]
+}
