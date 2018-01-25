@@ -1,0 +1,28 @@
+{
+  "elements":
+  [
+     { "type" : "Select" , "name" : "InputType" , "caption" : "Input Type" ,
+     "options" : [
+         { "label" : "Digital Input" , "value" : 1 } ,
+         { "label" : "Analog input" , "value" : 2 } ,
+         { "label" : "Digital Output" , "value" : 3 } ,
+         { "label" : "Analog Output" , "value" : 4 } ,        
+      ]
+      },
+    { "type" : "NumberSpinner" , "name" : "ID" , "caption" : "Nummer" },
+
+    { "type": "Label", "label": "Please select the S7 Object type " }
+  ],
+
+  "status":
+  [
+    { "code": 105, "icon": "active", "caption": "S7 Procces OK" },
+    { "code": 106, "icon": "active", "caption": "S7 Read interface value OK" },
+    { "code": 107, "icon": "active", "caption": "S7 Read actual value OK" },
+    { "code": 108, "icon": "active", "caption": "S7 Write Interface value OK" },
+    { "code": 109, "icon": "active", "caption": "S7 Write Force value OK" },
+    { "code": 200, "icon": "error", "caption": "S7 Procces Failed" }
+    { "code": 201, "icon": "error", "caption": "S7 Read Failed" }
+    { "code": 202, "icon": "error", "caption": "S7 Write Failed" }
+  ]
+}
