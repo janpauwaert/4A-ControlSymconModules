@@ -114,7 +114,7 @@ class S7Object extends IPSModule
  		if (S7_RequestRead($Intid)){
 			$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
 			$this-> StoreDataToIPS(str_pad(decbin($bData), 32, 0, STR_PAD_LEFT)); //
-			$this->SetStatus(106); 
+			//$this->SetStatus(106); 
 			
 		}
 		else{
@@ -125,7 +125,7 @@ class S7Object extends IPSModule
 
 			if (S7_RequestRead($Actid)){
 				$this->StoreActValueToIPS(GetValueFloat($this->getS7ValueId($Actid)));
-				$this->SetStatus(107);
+				//$this->SetStatus(107);
 				$success = true; 
  			}
  		}
@@ -159,7 +159,7 @@ class S7Object extends IPSModule
  		}
 
 		if 	(S7_WriteInteger($Intid, ReadDataFromIPS())){
-			$this->SetStatus(108);
+			//$this->SetStatus(108);
 			 
 		}
 		else{
@@ -172,7 +172,7 @@ class S7Object extends IPSModule
 				//Write force value
 		if (($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 			if (S7_WriteReal($Forceid,ReadForceValueFromIPS())){
-				$this->SetStatus(109);
+				//$this->SetStatus(109);
 				$success = true;
 			}
 		}
