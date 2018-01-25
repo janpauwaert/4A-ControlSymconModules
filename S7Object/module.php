@@ -1,7 +1,7 @@
 <?
  IPSUtils_Include   ( "IPSLogger.inc.php" ,   "IPSLibrary::app::core::IPSLogger" ) ; 
  IPSLogger_Err(__file__, "Variable mit Namen 'MeineVariable' konnte nicht gefunden werden");
-class S7Input extends IPSModule
+class S7Object extends IPSModule
 {
 	public function Create()
 	{
