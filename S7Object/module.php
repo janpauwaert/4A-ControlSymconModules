@@ -76,7 +76,7 @@ class S7Object extends IPSModule
 
 
 		$this->setUpdateS7Connection();
-		 Validate if compatible instance id was selected and set update event 
+		 //Validate if compatible instance id was selected and set update event 
  		if ($this->ReceiveValues() == true) 
  		{ 
  			//$this->setUpdateEvent(); 
