@@ -115,7 +115,7 @@ class S7Object extends IPSModule
 			$this->SetStatus(201); 
 		}
 		// read actual value is type is analog
-		if ($this->ReadPropertyInteger("InputType" )==2 || ($this->ReadPropertyInteger("InputType" )==4){
+		if (($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 
 			if (S7_RequestRead($Actid)){
 				$this->StoreActValueToIPS(GetValueFloat(getS7ValueId($Actid)));
@@ -159,7 +159,7 @@ class S7Object extends IPSModule
 
 	public function SendForceValue(){
 		//Write force value
-		if ($this->ReadPropertyInteger("InputType" )==2 || ($this->ReadPropertyInteger("InputType" )==4){
+		if ($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 			if (S7_WriteReal($Forceid,ReadForceValueFromIPS())){
 				$this->SetStatus(109);
 				$success = true;
