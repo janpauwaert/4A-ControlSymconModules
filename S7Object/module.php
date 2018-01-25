@@ -157,9 +157,10 @@ class S7Object extends IPSModule
 		}
 	}
 
-	public function SendForceValue(){
-		//Write force value
-		if ($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
+	public function SendForceValue()
+	{
+				//Write force value
+		if (($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 			if (S7_WriteReal($Forceid,ReadForceValueFromIPS())){
 				$this->SetStatus(109);
 				$success = true;
@@ -168,7 +169,7 @@ class S7Object extends IPSModule
 		else{
 			$success = true;
 		}
-		return $success; 
+		return $success;
 	}
  		
 
