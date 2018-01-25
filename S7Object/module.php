@@ -81,7 +81,7 @@ class S7Object extends IPSModule
 
  		if ($this->ReceiveValues() == true) 
  		{ 
- 			//$this->setUpdateEvent(); 
+ 			$this->SendValues(); 
  			
  		} 
 
