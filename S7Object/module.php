@@ -197,8 +197,8 @@ class S7Object extends IPSModule
 				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($stData, 13, 1)); 
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($stData, 14, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 13, 1)); 
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 14, 1));
 			    break;
 			case 3:
 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
@@ -209,8 +209,8 @@ class S7Object extends IPSModule
 				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($stData, 13, 1)); 
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($stData, 14, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 13, 1)); 
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 14, 1));
 			    break;
 
 			case 2:
@@ -236,15 +236,15 @@ class S7Object extends IPSModule
 		} 
  		
  		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 8, 1));
- 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($stData, 9, 1)); 
- 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xMode','xMode',0,'xMode'),substr($stData, 12, 1)); 
+ 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($data, 9, 1)); 
+ 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xMode','xMode',0,'xMode'),substr($data, 12, 1)); 
  
  	}
 
  	Private function StoreActValueToIPS($data)
  	{
  		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"ActualValuePLCIPS","ActualValue_PLC-IPS","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
- 		SetValueFloat($this->CreateVariableByIdent($deviceID,'ActualValue','Actual Value',2),$stData); 
+ 		SetValueFloat($this->CreateVariableByIdent($deviceID,'ActualValue','Actual Value',2),$data); 
  
  	}
 
