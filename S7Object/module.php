@@ -158,7 +158,7 @@ class S7Object extends IPSModule
  				break;
 
  		}
- 		IPSLogger_Dbg (__file__, sprintf("Object : %s ALARM %s !!!",$this->ReadDataFromIPS()$Intid,));
+ 		IPSLogger_Dbg (__file__, sprintf("Object : %s ALARM %s !!!",$this->ReadDataFromIPS(),$Intid));
 		if 	(S7_WriteInteger($Intid, $this->ReadDataFromIPS())){
 			//$this->SetStatus(108);
 			$success = true;
