@@ -64,7 +64,7 @@ class S7DigitalInput extends IPSModule
 
 		// Create event
 
-		if ($this->getUpdateEventId() == false)
+		/*if ($this->getUpdateEventId() == false)
 		{
 			$eventId = IPS_CreateEvent(0);
 			IPS_SetParent($eventId, $this->InstanceID);
@@ -73,7 +73,7 @@ class S7DigitalInput extends IPSModule
 			IPS_SetHidden($eventId, true);
 			IPS_SetPosition($eventId, 5);
 		}		
-
+*/
 
 	}
 
@@ -86,7 +86,7 @@ class S7DigitalInput extends IPSModule
 		// Validate if compatible instance id was selected and set update event 
  		if ($this->ProcessValues() == true) 
  		{ 
- 			$this->setUpdateEvent(); 
+ 			//$this->setUpdateEvent(); 
  
  		} 
 
