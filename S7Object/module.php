@@ -96,18 +96,18 @@ class S7Object extends IPSModule
 
  		switch (IPS_GetProperty($this->InstanceID, "InputType" )) {
 		   	case 1:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DI_PLC_IPS_Inteface','1010');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1010');
  				break;
  			case 2:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_PLC_IPS_Interface','1010');
- 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_PLC_IPS_ActValue','1012');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1010');
+ 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSActValue','S7_AI_PLC_IPS_ActValue','1012');
  				break;
  		   	case 3:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DO_PLC_IPS_Interface','1010');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1010');
  				break;
  			case 4:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_PLC_IPS_Interface','1010');
- 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_PLC_IPS_ActValue','1012');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010');
+ 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012');
  				break;
  		}					
 
@@ -140,20 +140,20 @@ class S7Object extends IPSModule
    		
    		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DI_IPS_PLC_Interface','1010');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1010');
  				break;
  			case 2:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_IPS_PLC_Interface','1010');
- 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_IPS_PLC_ForceValue','1011');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1010');
+ 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCForceValue','S7_AI_IPS_PLC_ForceValue','1011');
  				break;
 
  		  	case 3:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DO_IPS_PLC-Inteface','1010');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1010');
  				break;
 
  		  	case 4:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_IPS_PLC_Interface','1010');
- 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_IPS_PLC_ForceValue','1011');
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1010');
+ 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCForceValue','S7_AO_IPS_PLC_ForceValue','1011');
  				break;
 
  		}
@@ -186,27 +186,27 @@ class S7Object extends IPSModule
 
  	Private function StoreDataToIPS($data)
  	{
- 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"Inteface_PLC-IPS","Inteface_PLC-IPS","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+ 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"IntefacePLCIPS","Inteface_PLC-IPS","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
  		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_Off','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_Off'))){
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_ON','Alarm_Object_ON',0,'xAlarm'),substr($data, 1, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_On'))){
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 1, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($stData, 13, 1)); 
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($stData, 14, 1));
 			    break;
 			case 3:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_Off','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_Off'))){
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_ON','Alarm_Object_ON',0,'xAlarm'),substr($data, 1, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_On'))){
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 1, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($stData, 13, 1)); 
@@ -214,22 +214,22 @@ class S7Object extends IPSModule
 			    break;
 
 			case 2:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_Low','Alarm_Object_Low',0,'xAlarm'),substr($data, 5, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_Low'))){
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 5, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectLow'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_High','Alarm_Object_High',0,'xAlarm'),substr($data, 4, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_High'))){
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 4, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 				}
 			    break;
 			case 4:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_Low','Alarm_Object_Low',0,'xAlarm'),substr($data, 5, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_Low'))){
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 5, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectLow'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'Alarm_Object_High','Alarm_Object_High',0,'xAlarm'),substr($data, 4, 1));
-				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'Alarm_Object_High'))){
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 4, 1));
+				if (GetValueBoolean(@IPS_GetObjectIDByIdent($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 				}
 			    break;
@@ -243,32 +243,32 @@ class S7Object extends IPSModule
 
  	Private function StoreActValueToIPS($data)
  	{
- 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"ActualValue_PLC-IPS","ActualValue_PLC-IPS","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+ 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"ActualValuePLCIPS","ActualValue_PLC-IPS","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
  		SetValueFloat($this->CreateVariableByIdent($deviceID,'ActualValue','Actual Value',2),$stData); 
  
  	}
 
  	Private function ReadDataFromIPS()
  	{
- 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"IPS-PLC","DWord_IPS-PLC","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
- 		$ManOn = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Schakel_aan_in_manueel","Schakel_aan_in_manueel",0));
+ 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"IPSPLC","DWord_IPS-PLC","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+ 		$ManOn = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Schakelaaninmanueel","Schakel_aan_in_manueel",0));
  		if ($ManOn){
  			IPSLogger_Wrn(__file__, sprintf("Object : %s manueel AAN geschakeld",IPS_GetName($this->InstanceID )));
  		}
- 		$ManOff = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Schakel_uit_in_manueel","Schakel_uit_in_manueel",0));
+ 		$ManOff = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Schakeluitinmanueel","Schakel_uit_in_manueel",0));
  		if ($ManOff){
  			IPSLogger_Wrn(__file__, sprintf("Object : %s manueel UIT geschakeld",IPS_GetName($this->InstanceID )));
  		}
- 		$Man = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Schakel_Naar_Manueel","Schakel_Naar_Manueel",0));
+ 		$Man = GetValueBoolean($this->CreateVariableByIdent($deviceID,"SchakelNaarManueel","Schakel_Naar_Manueel",0));
  		if ($Man){
  			IPSLogger_Wrn(__file__, sprintf("Object : %s mode naar MANUEEL geschakeld",IPS_GetName($this->InstanceID )));
  		}
 
- 		$Auto = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Schakel_Naar_Automatisch","Schakel_Naar_Automatisch",0));
+ 		$Auto = GetValueBoolean($this->CreateVariableByIdent($deviceID,"SchakelNaarAutomatisch","Schakel_Naar_Automatisch",0));
  		if ($Auto){
 			IPSLogger_Wrn(__file__, sprintf("Object : %s mode naar AUTO geschakeld",IPS_GetName($this->InstanceID )));
 		}
- 		$Bev = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Bevestig_Alarmen","Bevestig_Alarmen",0));
+ 		$Bev = GetValueBoolean($this->CreateVariableByIdent($deviceID,"BevestigAlarmen","Bevestig_Alarmen",0));
  		$data = "00000000000".$bev.$Auto.$Man.$ManOff.$ManOn;
  		return bindec($data);
  		
@@ -276,7 +276,7 @@ class S7Object extends IPSModule
 
  	Private function ReadForceValueFromIPS()
  	{
- 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"ForceValue_IPS-PLC","ForceValue_IPS-PLC","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+ 		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"ForceValueIPSPLC","ForceValue_IPS-PLC","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
  		$Force = GetValueFloat($this->CreateVariableByIdent($deviceID,"ForceValue","Force Value",2));
  		return $Force;
  	}
@@ -296,9 +296,9 @@ class S7Object extends IPSModule
 
 	}
 
-	Private function setUpdateS7Connection($id, $ident, $AreaAddress)
+	Private function setUpdateS7Connection($id, $ident,$name, $AreaAddress)
 	{
-		$OBJid = $this->CreateInstanceByIdent($id,$ident,$ident,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}");
+		$OBJid = $this->CreateInstanceByIdent($id,$ident,$name,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}");
 
 
 		switch ($this->ReadPropertyInteger("InputType" )) {
