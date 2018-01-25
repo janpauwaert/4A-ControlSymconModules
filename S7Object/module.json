@@ -5,7 +5,7 @@
   "vendor": "jan pauwaert",
   "aliases":
   [
-    "S7 Input"
+    "S7 Object"
   ],
   "parentRequirements": [""],
   "childRequirements": [""],
