@@ -159,7 +159,7 @@ class S7Object extends IPSModule
 
  		}
 
-		if 	(S7_WriteInteger($Intid, ReadDataFromIPS())){
+		if 	(S7_WriteInteger($Intid, &this->ReadDataFromIPS())){
 			//$this->SetStatus(108);
 			$success = true;
 			 
