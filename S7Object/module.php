@@ -75,8 +75,10 @@ class S7Object extends IPSModule
 		parent::ApplyChanges();
 
 
-		$this->setUpdateS7Connection();
+		//$this->setUpdateS7Connection();
 		 //Validate if compatible instance id was selected and set update event 
+
+
  		if ($this->ReceiveValues() == true) 
  		{ 
  			//$this->setUpdateEvent(); 
@@ -92,7 +94,7 @@ class S7Object extends IPSModule
  	{ 
  		$success = false;  
 
- 		switch ($this->ReadPropertyInteger("InputType" )) {
+ 		switch (IPS_GetProperty($this->InstanceID, "InputType" )) {
 		   	case 1:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DI_PLC_IPS_Inteface','1010');
  				break;
