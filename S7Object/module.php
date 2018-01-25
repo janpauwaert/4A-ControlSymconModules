@@ -56,7 +56,7 @@ class S7Object extends IPSModule
 
 		// Create event
 
-		if ($this->getUpdateEventId() == false)
+		/*if ($this->getUpdateEventId() == false)
 		{
 			$eventId = IPS_CreateEvent(0);
 			IPS_SetParent($eventId, $this->InstanceID);
@@ -64,7 +64,7 @@ class S7Object extends IPSModule
 			IPS_SetName($eventId, "Update values");
 			IPS_SetHidden($eventId, true);
 			IPS_SetPosition($eventId, 0);
-		}		
+		}*/		
 
 
 	}
@@ -75,13 +75,13 @@ class S7Object extends IPSModule
 		parent::ApplyChanges();
 
 
-		//$this->setUpdateS7Connection();
-		// Validate if compatible instance id was selected and set update event 
- 		//if ($this->ReceiveValues() == true) 
- 		//{ 
+		$this->setUpdateS7Connection();
+		 Validate if compatible instance id was selected and set update event 
+ 		if ($this->ReceiveValues() == true) 
+ 		{ 
  			//$this->setUpdateEvent(); 
  			
- 		//} 
+ 		} 
 
 	}
 
