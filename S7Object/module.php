@@ -272,7 +272,7 @@ class S7Object extends IPSModule
 			IPSLogger_Wrn(__file__, sprintf("Object : %s mode naar AUTO geschakeld",IPS_GetName($this->InstanceID )));
 		}
  		$Bev = GetValueBoolean($this->CreateVariableByIdent($deviceID,"BevestigAlarmen","Bevestig_Alarmen",0));
- 		$data = "00000000000".$bev.$Auto.$Man.$ManOff.$ManOn;
+ 		$data = "00000000000".$Bev.$Auto.$Man.$ManOff.$ManOn;
  		return bindec($data);
  		
  	}
