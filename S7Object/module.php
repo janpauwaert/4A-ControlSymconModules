@@ -77,11 +77,11 @@ class S7Object extends IPSModule
 
 		//$this->setUpdateS7Connection();
 		// Validate if compatible instance id was selected and set update event 
- 		if ($this->ReceiveValues() == true) 
- 		{ 
- 			$this->setUpdateEvent(); 
+ 		//if ($this->ReceiveValues() == true) 
+ 		//{ 
+ 			//$this->setUpdateEvent(); 
  			
- 		} 
+ 		//} 
 
 	}
 
@@ -95,18 +95,22 @@ class S7Object extends IPSModule
  		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DI_PLC_IPS_Inteface','1010');
+ 				break;
  			case 2:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_PLC_IPS_Interface','1010');
  				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_PLC_IPS_ActValue','1012');
+ 				break;
  		   	case 3:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DO_PLC_IPS_Interface','1010');
+ 				break;
  			case 4:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_PLC_IPS_Interface','1010');
  				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_PLC_IPS_ActValue','1012');
+ 				break;
  		}					
 
  		if (S7_RequestRead($Intid)){
-			$bData	= GetValueInteger(getS7ValueId($Intid)); 
+			$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
 			$this-> StoreDataToIPS(str_pad(decbin($bData), 32, 0, STR_PAD_LEFT)); //
 			$this->SetStatus(106); 
 			
@@ -118,7 +122,7 @@ class S7Object extends IPSModule
 		if (($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 
 			if (S7_RequestRead($Actid)){
-				$this->StoreActValueToIPS(GetValueFloat(getS7ValueId($Actid)));
+				$this->StoreActValueToIPS(GetValueFloat($this->getS7ValueId($Actid)));
 				$this->SetStatus(107);
 				$success = true; 
  			}
@@ -135,16 +139,20 @@ class S7Object extends IPSModule
    		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DI_IPS_PLC_Interface','1010');
+ 				break;
  			case 2:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_IPS_PLC_Interface','1010');
  				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AI_IPS_PLC_ForceValue','1011');
+ 				break;
 
  		  	case 3:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_DO_IPS_PLC-Inteface','1010');
+ 				break;
 
  		  	case 4:
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_IPS_PLC_Interface','1010');
  				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7_AO_IPS_PLC_ForceValue','1011');
+ 				break;
 
  		}
 
@@ -226,7 +234,7 @@ class S7Object extends IPSModule
 		} 
  		
  		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 8, 1));
- 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xOnbAlarm',,'xOnbAlarm',0,'xOnbAlarm'),substr($stData, 9, 1)); 
+ 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($stData, 9, 1)); 
  		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xMode','xMode',0,'xMode'),substr($stData, 12, 1)); 
  
  	}
@@ -261,7 +269,7 @@ class S7Object extends IPSModule
  		$Bev = GetValueBoolean($this->CreateVariableByIdent($deviceID,"Bevestig_Alarmen","Bevestig_Alarmen",0));
  		$data = "00000000000".$bev.$Auto.$Man.$ManOff.$ManOn;
  		return bindec($data);
- 		}
+ 		
  	}
 
  	Private function ReadForceValueFromIPS()
@@ -288,7 +296,7 @@ class S7Object extends IPSModule
 
 	Private function setUpdateS7Connection($id, $ident, $AreaAddress)
 	{
-		$OBJid = $this->CreateInstanceByIdent($id,$ident,$ident,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}")
+		$OBJid = $this->CreateInstanceByIdent($id,$ident,$ident,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}");
 
 
 		switch ($this->ReadPropertyInteger("InputType" )) {
