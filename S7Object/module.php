@@ -132,6 +132,7 @@ class S7Object extends IPSModule
  		else{
  			$success = true; 
  		}
+ 		return $success;
  	} 
 
  	public function SendValues() 
@@ -160,11 +161,13 @@ class S7Object extends IPSModule
 
 		if 	(S7_WriteInteger($Intid, ReadDataFromIPS())){
 			//$this->SetStatus(108);
+			$success = true;
 			 
 		}
 		else{
 			$this->SetStatus(202); 
 		}
+		return $success;
 	}
 
 	public function SendForceValue()
