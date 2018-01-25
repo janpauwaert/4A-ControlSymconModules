@@ -1,6 +1,6 @@
 <?
  IPSUtils_Include   ( "IPSLogger.inc.php" ,   "IPSLibrary::app::core::IPSLogger" ) ; 
- IPSLogger_Err(__file__, "Variable mit Namen 'MeineVariable' konnte nicht gefunden werden");
+ //IPSLogger_Err(__file__, "Variable mit Namen 'MeineVariable' konnte nicht gefunden werden");
 class S7Object extends IPSModule
 {
 	public function Create()
@@ -159,7 +159,7 @@ class S7Object extends IPSModule
 
  		}
 
-		if 	(S7_WriteInteger($Intid, $this->ReadDataFromIPS())){
+		if 	(S7_WriteInteger($Intid, 12)){
 			//$this->SetStatus(108);
 			$success = true;
 			 
