@@ -141,19 +141,19 @@ class S7Object extends IPSModule
    		
    		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1010',3);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1010',2);
  				break;
  			case 2:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1010',3);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1010',2);
  				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCForceValue','S7_AI_IPS_PLC_ForceValue','1011',7);
  				break;
 
  		  	case 3:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1010',3);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1010',2);
  				break;
 
  		  	case 4:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1010',3);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1010',2);
  				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCForceValue','S7_AO_IPS_PLC_ForceValue','1011',7);
  				break;
 
@@ -200,55 +200,55 @@ class S7Object extends IPSModule
  		$deviceID = $this->CreateInstanceByIdent($this->InstanceID,"IntefacePLCIPS","Inteface_PLC-IPS","{485D0419-BE97-4548-AA9C-C083EB82E61E}");
  		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 13, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 1, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 14, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 13, 1)); 
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 14, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 26, 1)); 
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 25, 1));
 			    break;
 			case 3:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 2, 1));
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 13, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 1, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 14, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 13, 1)); 
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 14, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 26, 1)); 
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 25, 1));
 			    break;
 
 			case 2:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 5, 1));
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 11, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectLow'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 4, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 10, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 				}
 			    break;
 			case 4:
-				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 5, 1));
+				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 11, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectLow'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 				}
- 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 4, 1));
+ 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 10, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 				}
 			    break;
 		} 
  		
- 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 8, 1));
- 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($data, 9, 1)); 
- 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xMode','xMode',0,'xMode'),substr($data, 12, 1)); 
+ 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 31, 1));
+ 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($data, 30, 1)); 
+ 		SetValueBoolean($this->CreateVariableByIdent($deviceID,'xMode','xMode',0,'xMode'),substr($data, 27, 1)); 
  
  	}
 
