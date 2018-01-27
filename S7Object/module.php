@@ -332,7 +332,7 @@ class S7Object extends IPSModule
 		}
 
 			//IPS_SetName ( $InsID , sprintf("S7_PLC_Connection_%s_%s"),$InputType,$this->ReadPropertyInteger("Id"));  // noem de instantie volgens het type en nr
-			$config = sprintf('{"DataType":%s,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":1,"Poller":0,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$DataType,$AreaAddress, $Address);
+			$config = sprintf('{"DataType":%s,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":1,"Poller":100,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$DataType,$AreaAddress, $Address);
 			IPS_SetConfiguration ( $OBJid , $config) ;
 			IPS_ApplyChanges ( $OBJid ) ;  // accepteer nieuwe configuratie 
 
