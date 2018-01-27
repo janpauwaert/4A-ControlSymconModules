@@ -202,6 +202,7 @@ class S7Object extends IPSModule
 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , 'Alarm' , sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOn'))){
