@@ -361,7 +361,7 @@ class S7Object extends IPSModule
 			    $InputType = 'Analog_Input_';
 			    switch ($Interface){
 			    	case 0:
-			   			$Address = 723+($this->ReadPropertyInteger("ID" )*6); // 723 is start adres analog in DB 1010
+			   			$Address = 732+($this->ReadPropertyInteger("ID" )*6); // 723 is start adres analog in DB 1010
 			   			break;
 			    	case 1:
 						$Address = 16+($this->ReadPropertyInteger("ID" )*4); // 16 is start adres analog in DB1011
