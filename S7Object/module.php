@@ -119,18 +119,18 @@ class S7Object extends IPSModule
 
  		switch (IPS_GetProperty($this->InstanceID, "InputType" )) {
 		   	case 1:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1010',3);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1010',3,0);
  				break;
  			case 2:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1010',3);
- 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSActValue','S7_AI_PLC_IPS_ActValue','1012',7);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1010',3,0);
+ 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSActValue','S7_AI_PLC_IPS_ActValue','1012',7,2);
  				break;
  		   	case 3:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1010',3);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1010',3,0);
  				break;
  			case 4:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010',3);
- 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010',3,0);
+ 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7,2);
  				break;
  		}					
 
@@ -164,20 +164,20 @@ class S7Object extends IPSModule
    		
    		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1010',2);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1010',2,0);
  				break;
  			case 2:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1010',2);
- 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCForceValue','S7_AI_IPS_PLC_ForceValue','1011',7);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1010',2,0);
+ 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCForceValue','S7_AI_IPS_PLC_ForceValue','1011',7,1);
  				break;
 
  		  	case 3:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1010',2);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1010',2,0);
  				break;
 
  		  	case 4:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1010',2);
- 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCForceValue','S7_AO_IPS_PLC_ForceValue','1011',7);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1010',2,0);
+ 				$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCForceValue','S7_AO_IPS_PLC_ForceValue','1011',7,1);
  				break;
 
  		}
@@ -337,7 +337,7 @@ class S7Object extends IPSModule
 
 	}
 
-	Private function setUpdateS7Connection($id, $ident,$name, $AreaAddress,$DataType)
+	Private function setUpdateS7Connection($id, $ident,$name, $AreaAddress,$DataType,$Interface)
 	{
 		$OBJid = $this->CreateInstanceByIdent($id,$ident,$name,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}");
 
@@ -345,19 +345,60 @@ class S7Object extends IPSModule
 		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
 			    $InputType = 'Digital_Input_';
-			    $Address = 0+($this->ReadPropertyInteger("ID" )*6); // 0 is start adres digital in
+			    switch ($Interface){
+			    	case 0:
+			    		$Address = 0+($this->ReadPropertyInteger("ID" )*6); // 0 is start adres digital in
+			    		break;
+			    	case 1:
+						$Address = 0+($this->ReadPropertyInteger("ID" )*1); // 0 is start adres digital in
+			    		break;
+			    	case 2:
+			    		$Address = 0+($this->ReadPropertyInteger("ID" )*1); // 0 is start adres digital in
+			    		break;
+				}
 			    break;
 			case 2:
 			    $InputType = 'Analog_Input_';
-			   	$Address = 723+($this->ReadPropertyInteger("ID" )*4); // 560 is start adres analog in
+			    switch ($Interface){
+			    	case 0:
+			   			$Address = 723+($this->ReadPropertyInteger("ID" )*6); // 723 is start adres analog in DB 1010
+			   			break;
+			    	case 1:
+						$Address = 16+($this->ReadPropertyInteger("ID" )*4); // 16 is start adres analog in DB1011
+			    		break;
+			    	case 2:
+			    		$Address = 16+($this->ReadPropertyInteger("ID" )*4); // 16 is start adres analog in DB1012
+			    		break;
+				}
 			    break;
 			case 2:
 			    $InputType = 'Digital_Output';
-			   	$Address = 366+($this->ReadPropertyInteger("ID" )*4); // 280 is start adres Digital out
+			    switch ($Interface){
+			    	case 0:
+			   			$Address = 366+($this->ReadPropertyInteger("ID" )*6); // 366 is start adres Digital out in DB1010
+			   			break;
+			   		case 1:
+			   			$Address = 8+($this->ReadPropertyInteger("ID" )*1); // 8 is start adres Digital out in DB1011
+			   			break;
+			   		case 2:
+			   			$Address = 8+($this->ReadPropertyInteger("ID" )*1); // 8 is start adres Digital out DB 1012
+						break;
+				}
 			    break;
 			case 2:
 			    $InputType = 'Analog_Output';
-			   	$Address = 798+($this->ReadPropertyInteger("ID" )*6); // 320 is start adres analog out
+			    switch ($Interface){
+			    	case 0:
+			   			$Address = 798+($this->ReadPropertyInteger("ID" )*6); // 798 is start adres analog out in DB1010
+			   			break;
+			   		case 1:
+			   			$Address = 60+($this->ReadPropertyInteger("ID" )*4); // 60 is start adres analog out in DB1011
+			   			break;
+			   		case 2:
+			   			$Address = 60+($this->ReadPropertyInteger("ID" )*4); // 60 is start adres analog out in DB1012
+			   			break;
+			   	}
+
 			    break;
 
 		}
