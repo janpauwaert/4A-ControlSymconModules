@@ -10,7 +10,7 @@ class S7Object extends IPSModule
 
 		// Create Property
 		$this -> RegisterPropertyInteger ( "InputType" , 1 ) ;
-		$this -> RegisterPropertyInteger ( "Id" , 0 ) ;
+		$this -> RegisterPropertyInteger ( "ID" , 0 ) ;
 
 		// Create variable profiles
 		if (@IPS_GetVariableProfile('xAan') == false)
@@ -78,6 +78,7 @@ class S7Object extends IPSModule
 		//$this->setUpdateS7Connection();
 		 //Validate if compatible instance id was selected and set update event 
 
+		$type = $this->ReadPropertyInteger("InputType" );
 
  		if ($this->ReceiveValues() == true) 
  		{ 
@@ -202,11 +203,12 @@ class S7Object extends IPSModule
 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
-					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , 'Alarm' , sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 5, 1)); 
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 6, 1));
@@ -215,10 +217,12 @@ class S7Object extends IPSModule
 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOff'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectOn'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xUit','xUit',0,'xUit'),substr($data, 5, 1)); 
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'xAan','xAan',0,"xAan"),substr($data, 6, 1));
@@ -228,20 +232,24 @@ class S7Object extends IPSModule
 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 21, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectLow'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
 			    break;
 			case 4:
 				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 21, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectLow'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
 			    break;
 		} 
@@ -315,19 +323,19 @@ class S7Object extends IPSModule
 		switch ($this->ReadPropertyInteger("InputType" )) {
 		   	case 1:
 			    $InputType = 'Digital_Input_';
-			    $Address = 0+($this->ReadPropertyInteger("Id" )*4); // 0 is start adres digital in
+			    $Address = 0+($this->ReadPropertyInteger("ID" )*6); // 0 is start adres digital in
 			    break;
 			case 2:
 			    $InputType = 'Analog_Input_';
-			   	$Address = 560+($this->ReadPropertyInteger("Id" )*4); // 560 is start adres analog in
+			   	$Address = 723+($this->ReadPropertyInteger("ID" )*4); // 560 is start adres analog in
 			    break;
 			case 2:
 			    $InputType = 'Digital_Output';
-			   	$Address = 280+($this->ReadPropertyInteger("Id" )*4); // 280 is start adres Digital out
+			   	$Address = 366+($this->ReadPropertyInteger("ID" )*4); // 280 is start adres Digital out
 			    break;
 			case 2:
 			    $InputType = 'Analog_Output';
-			   	$Address = 320+($this->ReadPropertyInteger("Id" )*4); // 320 is start adres analog out
+			   	$Address = 798+($this->ReadPropertyInteger("ID" )*6); // 320 is start adres analog out
 			    break;
 
 		}
