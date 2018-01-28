@@ -78,14 +78,36 @@ class S7Object extends IPSModule
 		//$this->setUpdateS7Connection();
 		 //Validate if compatible instance id was selected and set update event 
 
-		$type = $this->ReadPropertyInteger("InputType" );
+		$Type = $this->ReadPropertyInteger("InputType" );
+		$Id = $this->ReadPropertyInteger("ID" );
+
+		$this->DestroyObject();
+
 
  		if ($this->ReceiveValues() == true) 
  		{ 
- 			$this->SendValues(); 
+ 			$this->SendValues($Type,$Id); 
  			
  		} 
 
+	}
+
+	public function Destroy() {
+		//Never delete this line!
+		parent::Destroy();
+		
+	}
+
+	Private function DestroyObject(){
+		$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
+		foreach ( $InstanceIDs as $IID ){
+		 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
+			$SID = IPS_GetChildrenIDs($IID);
+			foreach ( $SID as $VID )
+		 		IPS_DeleteVariable($VID);
+			IPS_DeleteInstance($IID);
+			}
+		 } 
 	}
 
  	/** Processes sensor readings and updates the status variables 
