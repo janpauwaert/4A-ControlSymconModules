@@ -320,7 +320,7 @@ class S7Object extends IPSModule
 
 	private function setUpdateEvent($variableId)
 	{
-			$eventId = $this->getUpdateEventId(); 
+			$eventId = $this->getUpdateEventId('UpdateInterface'); 
  
 			IPS_SetEventTrigger($eventId, 1, $variableId); 
 			IPS_SetEventActive($eventId, true); 
