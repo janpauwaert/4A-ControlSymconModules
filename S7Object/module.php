@@ -106,7 +106,7 @@ class S7Object extends IPSModule
 		$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
 		if ($InstanceIDs){
 			foreach ( $InstanceIDs as $IID ){
-			if ( !IPS_EventExists ( $InstanceIDs ) ){
+			if ( !IPS_EventExists ( $IID ) ){
 
 			 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
 				$SID = IPS_GetChildrenIDs($IID);
