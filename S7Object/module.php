@@ -1,6 +1,5 @@
 <?
  IPSUtils_Include   ( "IPSLogger.inc.php" ,   "IPSLibrary::app::core::IPSLogger" ) ; 
- //IPSLogger_Err(__file__, "Variable mit Namen 'MeineVariable' konnte nicht gefunden werden");
 class S7Object extends IPSModule
 {
 	public function Create()
@@ -56,15 +55,15 @@ class S7Object extends IPSModule
 
 		// Create event
 
-		/*if ($this->getUpdateEventId() == false)
+		if ($this->getUpdateEventId('UpdateInterface') == false)
 		{
 			$eventId = IPS_CreateEvent(0);
 			IPS_SetParent($eventId, $this->InstanceID);
-			IPS_SetIdent($eventId, 'updateEvent');
+			IPS_SetIdent($eventId, 'UpdateInterface');
 			IPS_SetName($eventId, "Update values");
 			IPS_SetHidden($eventId, true);
 			IPS_SetPosition($eventId, 0);
-		}*/	
+		}	
 
 
 	}
@@ -77,16 +76,12 @@ class S7Object extends IPSModule
 
 		//$this->setUpdateS7Connection();
 		 //Validate if compatible instance id was selected and set update event 
-
-		$Type = $this->ReadPropertyInteger("InputType" );
-		$Id = $this->ReadPropertyInteger("ID" );
-
 		$this->DestroyObject();
 
 
  		if ($this->ReceiveValues() == true) 
  		{ 
- 			$this->SendValues($Type,$Id); 
+ 			$this->SendValues(); 
  			
  		} 
 
@@ -132,7 +127,8 @@ class S7Object extends IPSModule
  				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010',3,0);
  				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7,2);
  				break;
- 		}					
+ 		}	
+ 		setUpdateEvent($Intid);				
 
  		if (S7_RequestRead($Intid)){
 			$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
@@ -322,17 +318,13 @@ class S7Object extends IPSModule
  		return $Force;
  	}
 
-	private function setUpdateEvent()
+	private function setUpdateEvent($variableId)
 	{
-		$variableId = $this->getUpdateS7Id(); 
-  
-		if ($variableId) 
-		{ 
 			$eventId = $this->getUpdateEventId(); 
  
-			IPS_SetEventTrigger($eventId, 0, $variableId); 
+			IPS_SetEventTrigger($eventId, 1, $variableId); 
 			IPS_SetEventActive($eventId, true); 
-			IPS_SetEventScript($eventId, "S7OBJ(" . $this->InstanceID . ");"); 
+			IPS_SetEventScript($eventId, "S7OBJ_ReceiveValues(" . $this->InstanceID . ");"); 
 		} 
 
 	}
@@ -361,7 +353,7 @@ class S7Object extends IPSModule
 			    $InputType = 'Analog_Input_';
 			    switch ($Interface){
 			    	case 0:
-			   			$Address = 732+($this->ReadPropertyInteger("ID" )*6); // 723 is start adres analog in DB 1010
+			   			$Address = 732+($this->ReadPropertyInteger("ID" )*6); // 732 is start adres analog in DB 1010
 			   			break;
 			    	case 1:
 						$Address = 16+($this->ReadPropertyInteger("ID" )*4); // 16 is start adres analog in DB1011
@@ -442,9 +434,9 @@ class S7Object extends IPSModule
 	/** Returns object id for update event
 	* @return int
 	*/
-	private function getUpdateEventId()
+	private function getUpdateEventId($Ident)
 	{
-		return @IPS_GetObjectIDByIdent('updateEvent', $this->InstanceID);
+		return @IPS_GetObjectIDByIdent($Ident, $this->InstanceID);
 	}
 
 	/** Returns object id for S7_PLC_Connection
