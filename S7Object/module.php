@@ -66,7 +66,15 @@ class S7Object extends IPSModule
 			IPS_SetPosition($eventId, 0);
 		}	
 
-
+		if ($this->getUpdateEventId('UpdateInterface') == false)
+		{
+			$eventId = IPS_CreateEvent(0);
+			IPS_SetParent($eventId, $this->InstanceID);
+			IPS_SetIdent($eventId, 'UpdateInterface');
+			IPS_SetName($eventId, "Update values");
+			IPS_SetHidden($eventId, true);
+			IPS_SetPosition($eventId, 0);
+		}
 	}
 
 	public function ApplyChanges()
@@ -78,15 +86,7 @@ class S7Object extends IPSModule
 		//$this->setUpdateS7Connection();
 		 //Validate if compatible instance id was selected and set update event 
 		$this->DestroyObject();
-		if ($this->getUpdateEventId('UpdateInterface') == false)
-		{
-			$eventId = IPS_CreateEvent(0);
-			IPS_SetParent($eventId, $this->InstanceID);
-			IPS_SetIdent($eventId, 'UpdateInterface');
-			IPS_SetName($eventId, "Update values");
-			IPS_SetHidden($eventId, true);
-			IPS_SetPosition($eventId, 0);
-		}
+
 
  		if ($this->ReceiveValues() == true) 
  		{ 
@@ -106,12 +106,15 @@ class S7Object extends IPSModule
 		$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
 		if ($InstanceIDs){
 			foreach ( $InstanceIDs as $IID ){
+			if ( !IPS_EventExists ( $InstanceIDs ) ){
+
 			 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
 				$SID = IPS_GetChildrenIDs($IID);
 				foreach ( $SID as $VID )
 			 		IPS_DeleteVariable($VID);
 				IPS_DeleteInstance($IID);
 				}
+			}
 			} 
 		}
 	}
