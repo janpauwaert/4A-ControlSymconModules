@@ -325,7 +325,6 @@ class S7Object extends IPSModule
 			IPS_SetEventTrigger($eventId, 1, $variableId); 
 			IPS_SetEventActive($eventId, true); 
 			IPS_SetEventScript($eventId, "S7OBJ_ReceiveValues(" . $this->InstanceID . ");"); 
-		} 
 
 	}
 
