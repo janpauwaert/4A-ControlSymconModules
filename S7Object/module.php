@@ -144,23 +144,19 @@ class S7Object extends IPSModule
  		}	
  		$this->setUpdateEvent($this->getS7ValueId($Intid));				
 
- 		if (S7_RequestRead($Intid)){
-			$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
-			$this-> StoreDataToIPS(str_pad(decbin($bData), 32, 0, STR_PAD_LEFT)); //
+ 		//if (S7_RequestRead($Intid)){
+		$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
+		$this-> StoreDataToIPS(str_pad(decbin($bData), 32, 0, STR_PAD_LEFT)); //
 			//$this->SetStatus(106); 
 			
-		}
-		else{
-			$this->SetStatus(201); 
-		}
 		// read actual value is type is analog
 		if (($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 
-			if (S7_RequestRead($Actid)){
+		
 				$this->StoreActValueToIPS(GetValueFloat($this->getS7ValueId($Actid)));
 				//$this->SetStatus(107);
 				$success = true; 
- 			}
+
  		}
  		else{
  			$success = true; 
