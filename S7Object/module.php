@@ -10,6 +10,7 @@ class S7Object extends IPSModule
 		// Create Property
 		$this -> RegisterPropertyInteger ( "InputType" , 1 ) ;
 		$this -> RegisterPropertyInteger ( "ID" , 0 ) ;
+		$this -> RegisterPropertyInteger ( "UpdateTime" , 100 ) ;
 
 		// Create variable profiles
 		if (@IPS_GetVariableProfile('xAan') == false)
@@ -392,9 +393,19 @@ class S7Object extends IPSModule
 
 			    break;
 		}
-
+			switch ($Interface){
+			    case 0:
+			   		$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
+			   		break;
+			   	case 1:
+			   		$poller = 0;
+					break;
+			   	case 2:
+			   		$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
+			   		break;
+			   	}
 			//IPS_SetName ( $InsID , sprintf("S7_PLC_Connection_%s_%s"),$InputType,$this->ReadPropertyInteger("Id"));  // noem de instantie volgens het type en nr
-			$config = sprintf('{"DataType":%s,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":1,"Poller":0,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$DataType,$AreaAddress, $Address);
+			$config = sprintf('{"DataType":%s,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":1,"Poller":%s,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$DataType,$AreaAddress, $Address,$poller);
 			IPS_SetConfiguration ( $OBJid , $config) ;
 			IPS_ApplyChanges ( $OBJid ) ;  // accepteer nieuwe configuratie 
 
