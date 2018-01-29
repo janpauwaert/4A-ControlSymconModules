@@ -96,7 +96,7 @@ class S7Object extends IPSModule
 
 	Private function DestroyObject(){
 		$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
-		if ($InstanceIDs){}
+		if ($InstanceIDs){
 			foreach ( $InstanceIDs as $IID ){
 			 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
 				$SID = IPS_GetChildrenIDs($IID);
