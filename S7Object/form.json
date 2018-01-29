@@ -10,6 +10,7 @@
       ]
       },
     { "type" : "NumberSpinner" , "name" : "ID" , "caption" : "Nummer" },
+    { "type" : "NumberSpinner" , "name" : "UpdateTime" , "caption" : "Update time in ms" },
 
     { "type": "Label", "label": "Please select the S7 Object type " }
   ],
