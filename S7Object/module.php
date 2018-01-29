@@ -62,7 +62,7 @@ class S7Object extends IPSModule
 			IPS_SetParent($eventId, $this->InstanceID);
 			IPS_SetIdent($eventId, 'UpdateInterface');
 			IPS_SetName($eventId, "Update values");
-			IPS_SetHidden($eventId, true);
+			IPS_SetHidden($eventId, false);
 			IPS_SetPosition($eventId, 0);
 		}	
 
