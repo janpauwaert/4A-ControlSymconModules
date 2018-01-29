@@ -96,14 +96,16 @@ class S7Object extends IPSModule
 
 	Private function DestroyObject(){
 		$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
-		foreach ( $InstanceIDs as $IID ){
-		 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
-			$SID = IPS_GetChildrenIDs($IID);
-			foreach ( $SID as $VID )
-		 		IPS_DeleteVariable($VID);
-			IPS_DeleteInstance($IID);
-			}
-		 } 
+		if ($InstanceIDs){}
+			foreach ( $InstanceIDs as $IID ){
+			 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
+				$SID = IPS_GetChildrenIDs($IID);
+				foreach ( $SID as $VID )
+			 		IPS_DeleteVariable($VID);
+				IPS_DeleteInstance($IID);
+				}
+			} 
+		}
 	}
 
  	/** Processes sensor readings and updates the status variables 
@@ -112,21 +114,21 @@ class S7Object extends IPSModule
  	public function ReceiveValues() 
  	{ 
  		$success = false;  
-
+ 		$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
  		switch (IPS_GetProperty($this->InstanceID, "InputType" )) {
 		   	case 1:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1010',3,0);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1010',3,0,$poller);
  				break;
  			case 2:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1010',3,0);
- 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSActValue','S7_AI_PLC_IPS_ActValue','1012',7,2);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1010',3,0,$poller);
+ 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSActValue','S7_AI_PLC_IPS_ActValue','1012',7,2,$poller);
  				break;
  		   	case 3:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1010',3,0);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1010',3,0,$poller);
  				break;
  			case 4:
- 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010',3,0);
- 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7,2);
+ 				$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010',3,0,$poller);
+ 				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7,2,$poller);
  				break;
  		}	
  		$this->setUpdateEvent($Intid);				
@@ -329,7 +331,7 @@ class S7Object extends IPSModule
 
 	}
 
-	Private function setUpdateS7Connection($id, $ident,$name, $AreaAddress,$DataType,$Interface)
+	Private function setUpdateS7Connection($id, $ident,$name, $AreaAddress,$DataType,$Interface,$poller=0)
 	{
 		$OBJid = $this->CreateInstanceByIdent($id,$ident,$name,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}");
 
@@ -393,17 +395,7 @@ class S7Object extends IPSModule
 
 			    break;
 		}
-			switch ($Interface){
-			    case 0:
-			   		$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
-			   		break;
-			   	case 1:
-			   		$poller = 0;
-					break;
-			   	case 2:
-			   		$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
-			   		break;
-			   	}
+
 			//IPS_SetName ( $InsID , sprintf("S7_PLC_Connection_%s_%s"),$InputType,$this->ReadPropertyInteger("Id"));  // noem de instantie volgens het type en nr
 			$config = sprintf('{"DataType":%s,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":1,"Poller":%s,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$DataType,$AreaAddress, $Address,$poller);
 			IPS_SetConfiguration ( $OBJid , $config) ;
