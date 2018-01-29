@@ -142,7 +142,7 @@ class S7Object extends IPSModule
  				$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7,2,$poller);
  				break;
  		}	
- 		$this->setUpdateEvent($Intid);				
+ 		$this->setUpdateEvent($this->getS7ValueId($Intid));				
 
  		if (S7_RequestRead($Intid)){
 			$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
