@@ -265,7 +265,7 @@ class S7Object extends IPSModule
  				SetValueBoolean($this->CreateVariableByIdent($deviceID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
 				if (GetValueBoolean(IPS_GetStatusVariableID($deviceID,'AlarmObjectHigh'))){
 					IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
-					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%)s ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
+					WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 				}
 			    break;
 			case 4:
