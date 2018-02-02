@@ -24,12 +24,8 @@ class VariableAggregator extends IPSModule
 		//$this->setUpdateS7Connection();
 		 //Validate if compatible instance id was selected and set update event 
 
-
- 		if ($this->ReceiveValues() == true) 
- 		{ 
- 			$this->SendValues(); 
+ 		$this->Aggregation(); 
  			
- 		} 
 
 	}
 
