@@ -89,7 +89,7 @@
 			{
 				foreach ( $InstanceIDs as $IID ){
 				if ( !IPS_EventExists ( $IID ) ){
-				if (!IPS_CategoryExits($IID))
+				if (!IPS_CategoryExists($IID))
 				{
 					if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device')
 					{
