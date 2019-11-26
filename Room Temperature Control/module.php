@@ -1,4 +1,4 @@
-<?
+<?php
  IPSUtils_Include   ( "IPSLogger.inc.php" ,   "IPSLibrary::app::core::IPSLogger" ) ; 
 class RoomTemperatureControl extends IPSModule
 {
