@@ -89,14 +89,24 @@
 			{
 				foreach ( $InstanceIDs as $IID ){
 				if ( !IPS_EventExists ( $IID ) ){
-
-				 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
+				if (!IPS_CategoryExits($IID))
+				{
+					if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device')
+					{
+						$SID = IPS_GetChildrenIDs($IID);
+						foreach ( $SID as $VID )
+			 				IPS_DeleteVariable($VID);
+						IPS_DeleteInstance($IID);
+					}
+				}else{
 					$SID = IPS_GetChildrenIDs($IID);
 					foreach ( $SID as $VID )
 			 			IPS_DeleteVariable($VID);
 					IPS_DeleteInstance($IID);
-					}
 				}
+
+				}
+
 			} 
 		}
 	}
@@ -279,7 +289,6 @@
  			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 0, 1));
  			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($data, 1, 1)); 
  			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xMode','xMode',0,'xMode'),substr($data, 4, 1)); 
- 
  		}
 
  		Private function StoreActValueToIPS($data)
