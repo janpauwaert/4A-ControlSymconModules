@@ -82,13 +82,32 @@
 			parent::Destroy();
 		}
 
+		Private function DestroyObject()
+		{
+			$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
+			if ($InstanceIDs)
+			{
+				foreach ( $InstanceIDs as $IID ){
+				if ( !IPS_EventExists ( $IID ) ){
+
+				 if (IPS_GetInstance($IID)['ModuleInfo']['ModuleName'] == 'Siemens Device'){
+					$SID = IPS_GetChildrenIDs($IID);
+					foreach ( $SID as $VID )
+			 			IPS_DeleteVariable($VID);
+					IPS_DeleteInstance($IID);
+					}
+				}
+			} 
+		}
+	}
+
 		public function ApplyChanges()
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			$this->setUpdateS7Connection();
+			//$this->setUpdateS7Connection();
 			//Validate if compatible instance id was selected and set update event 
-			//$this->DestroyObject();
+			$this->DestroyObject();
 
  			if ($this->ReceiveValues() == true) 
  			{ 
