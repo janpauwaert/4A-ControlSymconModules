@@ -427,7 +427,7 @@
 				IPS_SetName ( $CatID , $name);  // noem de instantie
 				IPS_SetParent ( $CatID , $id ) ;  // sorteer instantie onder dit object
 				IPS_SetIdent ($CatID, $ident);
-				IPS_ApplyChanges ( $CatID ) ;  // accepteer nieuwe configuratie 
+				//IPS_ApplyChanges ( $CatID ) ;  // accepteer nieuwe configuratie 
 			}
 			return $CatID;
 		}
