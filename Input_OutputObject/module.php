@@ -102,7 +102,7 @@
 					$SID = IPS_GetChildrenIDs($IID);
 					foreach ( $SID as $VID )
 			 			IPS_DeleteVariable($VID);
-					IPS_DeleteInstance($IID);
+					IPS_DeleteCategory($IID);
 				}
 
 				}
