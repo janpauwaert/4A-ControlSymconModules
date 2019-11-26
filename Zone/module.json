@@ -1,0 +1,12 @@
+{
+    "id": "{22DAD9B7-B38F-ABDD-1314-5C31A1C9F0E3}",
+    "name": "Zone",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "ZONE",
+    "url": ""
+}

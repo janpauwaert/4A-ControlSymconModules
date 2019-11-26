@@ -1,9 +1,12 @@
 {
-  "id": "{42DD42A3-AFFE-CEEE-4C8B-2FA1295B8924}",
-  "author": "Jan Pauwaert",
-  "name": "4A-Control modules for IP-Symcon",
-  "url": "https://github.com/janpauwaert/4A-ControlSymconModules",
-  "version": "1.0",
-  "build": 0,
-  "date": 0
+    "id": "{F3547C86-8A83-9120-0888-933C14152886}",
+    "author": "Jan Pauwaert",
+    "name": "4A Control",
+    "url": "https://github.com/janpauwaert/4A-ControlSymconModules",
+    "compatibility": {
+        "version": "5.0"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 0
 }
