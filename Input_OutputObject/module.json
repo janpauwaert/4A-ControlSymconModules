@@ -1,0 +1,12 @@
+{
+    "id": "{10297E7D-0B57-0FFB-AF7D-D19B50E23AB3}",
+    "name": "input_output Object",
+    "type": 3,
+    "vendor": "4A-Control",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "S7OBJ",
+    "url": ""
+}
