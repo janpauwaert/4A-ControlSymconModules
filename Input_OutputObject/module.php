@@ -134,17 +134,17 @@
  			$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
  			switch (IPS_GetProperty($this->InstanceID, "InputType" )) {
 		   		case 1:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1000',3,0,$poller);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIPLCIPSInteface','S7_DI_PLC_IPS_Inteface','1010',3,0,$poller);
  					break;
  				case 2:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1000',3,0,$poller);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSInterface','S7_AI_PLC_IPS_Interface','1010',3,0,$poller);
  					$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIPLCIPSActValue','S7_AI_PLC_IPS_ActValue','1012',7,2,$poller);
  					break;
  		   		case 3:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1000',3,0,$poller);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOPLCIPSInterface','S7_DO_PLC_IPS_Interface','1010',3,0,$poller);
  					break;
  				case 4:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1000',3,0,$poller);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSInterface','S7_AO_PLC_IPS_Interface','1010',3,0,$poller);
  					$Actid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOPLCIPSActValue','S7_AO_PLC_IPS_ActValue','1012',7,2,$poller);
  					break;
  			}	
@@ -176,19 +176,19 @@
    		
    			switch ($this->ReadPropertyInteger("InputType" )) {
 		   		case 1:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1000',2,0);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DIIPSPLCInterface','S7_DI_IPS_PLC_Interface','1010',2,0);
  					break;
  				case 2:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1000',2,0);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCInterface','S7_AI_IPS_PLC_Interface','1010',2,0);
  					$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AIIPSPLCForceValue','S7_AI_IPS_PLC_ForceValue','1011',7,1);
  					break;
 
  		  		case 3:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1000',2,0);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7DOIPSPLCInteface','S7_DO_IPS_PLC_Inteface','1010',2,0);
  					break;
 
  		  		case 4:
- 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1000',2,0);
+ 					$Intid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCInterface','S7_AO_IPS_PLC_Interface','1010',2,0);
  					$Forceid =  $this->setUpdateS7Connection($this->InstanceID,'S7AOIPSPLCForceValue','S7_AO_IPS_PLC_ForceValue','1011',7,1);
  					break;
 
