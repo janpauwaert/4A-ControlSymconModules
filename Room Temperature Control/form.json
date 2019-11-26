@@ -1,0 +1,15 @@
+{
+  "elements":
+  [
+     { "type": "Label", "label": "Please select the temperature values " },
+     { "type" : "SelectInstance" , "name" : "RoomTemperaturePV" , "caption" : "Actual room temperature" },
+     { "type" : "SelectInstance" , "name" : "RoomTemperatureSP" , "caption" : "Setpoint room temperature" },
+     { "type": "Label", "label": "Please select type of aggregation " }
+  ],
+
+  "status":
+  [
+    { "code": 105, "icon": "active", "caption": "Sensor instance valid" },
+    { "code": 200, "icon": "error", "caption": "Invalid sensor instance" }
+  ]
+}
