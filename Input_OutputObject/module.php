@@ -86,9 +86,9 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			//$this->setUpdateS7Connection();
+			$this->setUpdateS7Connection();
 			//Validate if compatible instance id was selected and set update event 
-			$this->DestroyObject();
+			//$this->DestroyObject();
 
  			if ($this->ReceiveValues() == true) 
  			{ 
