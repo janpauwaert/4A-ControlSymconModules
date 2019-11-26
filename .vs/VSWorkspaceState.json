@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\S7DigitalInput"
+    "\\S7DigitalInput",
+    "\\S7Object",
+    "\\VariableAggregator"
   ],
-  "SelectedNode": "\\S7DigitalInput\\module.php",
   "PreviewInSolutionExplorer": false
 }
