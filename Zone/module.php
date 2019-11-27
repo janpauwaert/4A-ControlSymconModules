@@ -100,7 +100,7 @@
 			$s_ZoneID = substr($data,0,40);
 			$Bools = str_pad(decbin($bData), 16, 0, STR_PAD_LEFT)
 
-			SetValueString($this->CreateVariableByIdent($CategorieID,'ZoneID','Zone ID',0,'xAlarm'),substr($data,0,40));
+			SetValueString($this->CreateVariableByIdent($CategorieID,'ZoneID','Zone ID',0,'xAlarm'),$s_ZoneID);
 
  			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xToegankelijk','xToegankelijk',0,'xUit'),substr($Bools, 7, 1)); 
  			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAfgesloten','xAfgesloten',0,"xAan"),substr($Bools, 6, 1));
