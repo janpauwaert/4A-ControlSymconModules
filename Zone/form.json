@@ -1,5 +1,21 @@
 {
-    "elements": [],
+  "elements": [
+    {
+      "type": "NumberSpinner",
+      "name": "DBNummer",
+      "caption": "DB Adress"
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "StartAdress",
+      "caption": "start adres in DB"
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "UpdateTime",
+      "caption": "Update time in ms"
+    }
+  ],
     "actions": [],
     "status": []
 }
