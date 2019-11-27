@@ -30,7 +30,7 @@
 			parent::Destroy();
 		}
 
-				Private function DestroyObject()
+		Private function DestroyObject()
 		{
 			$InstanceIDs = IPS_GetChildrenIDs ($this->InstanceID);
 			if ($InstanceIDs)
