@@ -135,6 +135,50 @@
 
 			return $OBJid;
 		}
+
+		Private function CreateInstanceByIdent($id, $ident, $name, $moduleid = "{485D0419-BE97-4548-AA9C-C083EB82E61E}")
+		{
+			$iid = @IPS_GetObjectIDByIdent($ident,$id);
+			if ($iid === false){
+				$iid = IPS_CreateInstance ( $moduleid ) ;
+				IPS_SetName ( $iid , $name);  // noem de instantie
+				IPS_SetParent ( $iid , $id ) ;  // sorteer instantie onder dit object
+				IPS_SetIdent ($iid, $ident);
+				IPS_ApplyChanges ( $iid ) ;  // accepteer nieuwe configuratie 
+			}
+			return $iid;
+		}
+
+		Private function CreateCategorieByIdent($id, $ident, $name)
+		{
+			$CatID = @IPS_GetObjectIDByIdent($ident,$id);
+			if ($CatID === false){
+				$CatID = IPS_CreateCategory () ;
+				IPS_SetName ( $CatID , $name);  // noem de instantie
+				IPS_SetParent ( $CatID , $id ) ;  // sorteer instantie onder dit object
+				IPS_SetIdent ($CatID, $ident);
+				//IPS_ApplyChanges ( $CatID ) ;  // accepteer nieuwe configuratie 
+			}
+			return $CatID;
+		}
+
+		Private function CreateVariableByIdent($id, $ident, $name, $type, $profile = "")
+		{
+			$vid = @IPS_GetObjectIDByIdent($ident,$id);
+			if ($vid === false){
+				$vid = IPS_CreateVariable ( $type ) ;
+				IPS_SetName ( $vid , $name);  // noem de instantie
+				IPS_SetParent ( $vid , $id ) ;  // sorteer instantie onder dit object
+				IPS_SetIdent ($vid, $ident);
+				if ($profile != ""){
+					IPS_SetVariableCustomProfile($vid, $profile);
+				}
+			}
+			return $vid;
+		}
+
+
+
 		/** Returns object id for update event
 		* @return int
 		*/
