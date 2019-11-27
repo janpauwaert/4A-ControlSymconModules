@@ -20,7 +20,7 @@
 				IPS_SetParent($eventId, $this->InstanceID);
 				IPS_SetIdent($eventId, 'UpdateZone');
 				IPS_SetName($eventId, "Update values");
-				IPS_SetHidden($eventId, true);
+				//IPS_SetHidden($eventId, true);
 				IPS_SetPosition($eventId, 0);
 			}	
 		}
