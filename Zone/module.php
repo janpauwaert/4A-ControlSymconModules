@@ -129,7 +129,7 @@
 		{
 			$OBJid = $this->CreateInstanceByIdent($id,$ident,$name,"{932076B1-B18E-4AB6-AB6D-275ED30B62DB}");
 			
-			$config = sprintf('{"DataType":10,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":80,"Poller":%s,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$AreaAddress, $Address,$poller);
+			$config = sprintf('{"DataType":10,"Area":7,"AreaAddress":%s,"Address":%s,"Bit":0,"Length":80,"Poller":%s,"ReadOnly":false,"EmulateStatus":true,"Factor":0.0}',$AreaAddress, $Adress,$poller);
 			IPS_SetConfiguration ( $OBJid , $config) ;
 			IPS_ApplyChanges ( $OBJid ) ;  // accepteer nieuwe configuratie 
 
