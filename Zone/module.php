@@ -9,6 +9,7 @@
 			// Create Property
 			$this -> RegisterPropertyInteger ( "DBNummer" , 3001 ) ;
 			$this -> RegisterPropertyInteger ( "StartAdress" , 0 ) ;
+			$this -> RegisterPropertyInteger ( "UpdateTime" , 100 ) ;
 
 
 			// Create event
