@@ -65,7 +65,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
-			$this->DestroyObject();
+			//$this->DestroyObject();
 
  			if ($this->ReceiveValues() == true) 
  			{ 
