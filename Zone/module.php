@@ -99,7 +99,7 @@
  		{
  			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"ZoneInfo","Zone_info");
 			$s_ZoneID = substr($data,0,40);
-			$Bools = str_pad(decbin($bData), 16, 0, STR_PAD_LEFT);
+			$Bools = str_pad(decbin($data), 16, 0, STR_PAD_LEFT);
 
 			SetValueString($this->CreateVariableByIdent($CategorieID,'ZoneID','Zone_ID',0,'xAlarm'),$s_ZoneID);
 
