@@ -226,7 +226,7 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAanvraagHerwapenen','xAanvraagHerwapenen',0,"Aanvraag"),substr($Bools, 12, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAanvraagToegang','xAanvraagToegang',0,"Aanvraag"),substr($Bools, 11, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xPersoonAanwezig','xPersoonAanwezig',0,"~Presence"),substr($Bools, 10, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerlicht','xVerlicht',0,"Light"),substr($Bools, 9, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerlicht','xVerlicht',0,"Verlicht"),substr($Bools, 9, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xPaniek','xPaniek',0,"xAlarm"),substr($Bools, 8, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xInbraak','xInbraak',0,"xAlarm"),substr($Bools, 7, 1));
 			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iSfeer','iSfeer',1,"sfeer"),String2Hex2dec(substr($data, 54, 2)));
