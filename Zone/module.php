@@ -24,24 +24,57 @@
 			{
 				IPS_CreateVariableProfile('Toegankelijk', 0);
 				IPS_SetVariableProfileIcon('Toegankelijk', 'Door');
-				IPS_SetVariableProfileAssociation("Toegankelijk",false,"Niet Teogankelijk",'Door',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Toegankelijk",false,"Niet Toegankelijk",'Door',0xa0a0a0);
 				IPS_SetVariableProfileAssociation("Toegankelijk",true,"Toegankelijk",'Door',0x00ff00);
 			}
+
+			if (@IPS_GetVariableProfile('Heating') == false)
+			{
+				IPS_CreateVariableProfile('Heating', 0);
+				IPS_SetVariableProfileIcon('Heating', 'Radiator');
+				IPS_SetVariableProfileAssociation("Heating",false,"Niet Verwarmd",'Radiator',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Heating",true,"Verwarmd",'Radiator',0xff0000);
+			}
+
+			if (@IPS_GetVariableProfile('Heated') == false)
+			{
+				IPS_CreateVariableProfile('Heated', 0);
+				IPS_SetVariableProfileIcon('Heated', 'Radiator');
+				IPS_SetVariableProfileAssociation("Heated",false,"Verwarming uit",'Radiator',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Heated",true,"Verwarming aan",'Radiator',0x00ff00);
+			}
+
+			if (@IPS_GetVariableProfile('Cooling') == false)
+			{
+				IPS_CreateVariableProfile('Cooling', 0);
+				IPS_SetVariableProfileIcon('Cooling', 'SnowFlake');
+				IPS_SetVariableProfileAssociation("Cooling",false,"Niet Gekoeld",'SnowFlake',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Cooling",true,"Gekoeld",'SnowFlake',0x0000ff);
+			}
+			
+			if (@IPS_GetVariableProfile('Cooled') == false)
+			{
+				IPS_CreateVariableProfile('Cooled', 0);
+				IPS_SetVariableProfileIcon('Cooled', 'SnowFlake');
+				IPS_SetVariableProfileAssociation("Cooled",false,"Koeling uit",'SnowFlake',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Cooled",true,"Koeling aan",'SnowFlake',0x00ff00);
+			}
+
 
 			if (@IPS_GetVariableProfile('Aanvraag') == false)
 			{
 				IPS_CreateVariableProfile('Aanvraag', 0);
 				IPS_SetVariableProfileIcon('Aanvraag', 'Key');
-				IPS_SetVariableProfileAssociation("Aanvraag",false,"True",'Flag',0xa0a0a0);
-				IPS_SetVariableProfileAssociation("Aanvraag",true,"False",'OK',0x00ff00);
+				IPS_SetVariableProfileAssociation("Aanvraag",false,"False",'Flag',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Aanvraag",true,"True",'OK',0x00ff00);
 			}
 
 			if (@IPS_GetVariableProfile('Verlicht') == false)
 			{
 				IPS_CreateVariableProfile('Verlicht', 0);
 				IPS_SetVariableProfileIcon('Verlicht', 'Light');
-				IPS_SetVariableProfileAssociation("Verlicht",false,"True",'Light',0xa0a0a0);
-				IPS_SetVariableProfileAssociation("Verlicht",true,"False",'Light',0x00ff00);
+				IPS_SetVariableProfileAssociation("Verlicht",false,"False",'Light',0xa0a0a0);
+				IPS_SetVariableProfileAssociation("Verlicht",true,"True",'Light',0x00ff00);
 			}
 
 			if (@IPS_GetVariableProfile('xAlarm') == false)
@@ -54,7 +87,7 @@
 
 			if (@IPS_GetVariableProfile('sfeer') == false)
 			{
-				IPS_CreateVariableProfile('sfeer', 0);
+				IPS_CreateVariableProfile('sfeer', 1);
 				IPS_SetVariableProfileIcon('sfeer', 'Sofa');
 				IPS_SetVariableProfileAssociation("sfeer",0,"Uit",'Close',0xa0a0a0);
 				IPS_SetVariableProfileAssociation("sfeer",1,"1",'Sofa',0xa0a0a0);
@@ -71,7 +104,7 @@
 
 			if (@IPS_GetVariableProfile('InputType') == false)
 			{
-				IPS_CreateVariableProfile('InputType', 0);
+				IPS_CreateVariableProfile('InputType', 1);
 				IPS_SetVariableProfileIcon('InputType', 'Sofa');
 				IPS_SetVariableProfileAssociation("InputType",0,"Not Defined",'Close',0xa0a0a0);
 				IPS_SetVariableProfileAssociation("InputType",1,"Drukknop",'Sofa',0xa0a0a0);
@@ -196,38 +229,38 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerlicht','xVerlicht',0,"Light"),substr($Bools, 9, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xPaniek','xPaniek',0,"xAlarm"),substr($Bools, 8, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xInbraak','xInbraak',0,"xAlarm"),substr($Bools, 7, 1));
-			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iSfeer','iSfeer',0,"sfeer"),String2Hex2dec(substr($data, 54, 2)));
-			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iLastInput','iLastInput',0,"InputType"),String2Hex2dec(substr($data, 56, 2)));
+			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iSfeer','iSfeer',1,"sfeer"),String2Hex2dec(substr($data, 54, 2)));
+			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iLastInput','iLastInput',1,"InputType"),String2Hex2dec(substr($data, 56, 2)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"ZoneKlimaat","Zone_Klimaat");
 			$Bools = str_pad(decbin(substr($data,58,2)), 16, 0, STR_PAD_LEFT);
 
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmd','xVerwarmd',0,"Light"),substr($Bools, 7, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmen','xVerwarmen',0,"xAlarm"),substr($Bools, 6, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xGekoeld','xGekoeld',0,"xAlarm"),substr($Bools, 5, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xGekoeld','xGekoeld',0,"xAlarm"),substr($Bools, 4, 1));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rPvTemperatuur','rPvTemperatuur',0,"sfeer"),StringTo32Float(substr($data, 60, 4)));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',0,"InputType"),StringTo32Float(substr($data, 64, 4)));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmd','xVerwarmd',0,"Heating"),substr($Bools, 7, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmen','xVerwarmen',0,"Heated"),substr($Bools, 6, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xGekoeld','xGekoeld',0,"Cooling"),substr($Bools, 5, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xKoelen','xKoelen',0,"Cooled"),substr($Bools, 4, 1));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rPvTemperatuur','rPvTemperatuur',2,"~Tempeature"),StringTo32Float(substr($data, 60, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',2,"~Tempeature"),StringTo32Float(substr($data, 64, 4)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"PLC_IPSYMCON","PLC_IPSYMCON");
 			$Bools = str_pad(decbin(substr($data,68,1)), 16, 0, STR_PAD_LEFT);
 
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xLockable','xLockable',0,"Light"),substr($Bools, 7, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xManModeReq','xManModeReq',0,"xAlarm"),substr($Bools, 6, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAutoModeReq','xAutoModeReq',0,"xAlarm"),substr($Bools, 5, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xOKVoorAuto','xOKVoorAuto',0,"xAlarm"),substr($Bools, 4, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xLockable','xLockable',0),substr($Bools, 7, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xManModeReq','xManModeReq',0),substr($Bools, 6, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAutoModeReq','xAutoModeReq',0),substr($Bools, 5, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xOKVoorAuto','xOKVoorAuto',0),substr($Bools, 4, 1));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"IPSYMCON_plc","IPSYMCON_plc");
 			$Bools = str_pad(decbin(substr($data,70,1)), 16, 0, STR_PAD_LEFT);
 
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xManueleModeOk','xManueleModeOk',0,"Light"),substr($Bools, 7, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAutoModeOK','xAutoModeOK',0,"xAlarm"),substr($Bools, 6, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xLockReq','xLockReq',0,"xAlarm"),substr($Bools, 5, 1));
-			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUnlockReq','xUnlockReq',0,"xAlarm"),substr($Bools, 4, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xManueleModeOk','xManueleModeOk',0),substr($Bools, 7, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAutoModeOK','xAutoModeOK',0),substr($Bools, 6, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xLockReq','xLockReq',0),substr($Bools, 5, 1));
+			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUnlockReq','xUnlockReq',0),substr($Bools, 4, 1));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"Vermogen","Vermogen");
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rActueelVermogen','rActueelVermogen',0,"sfeer"),StringTo32Float(substr($data, 72, 4)));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rStroom','rStroom',0,"InputType"),StringTo32Float(substr($data, 76, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rActueelVermogen','rActueelVermogen',2,"Power_Watt"),StringTo32Float(substr($data, 72, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rStroom','rStroom',2,"~Ampere"),StringTo32Float(substr($data, 76, 4)));
 
  		}
 
