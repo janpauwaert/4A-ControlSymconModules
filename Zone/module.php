@@ -200,7 +200,7 @@
 			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iLastInput','iLastInput',0,"InputType"),String2Hex2dec(substr($data, 56, 2)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"ZoneKlimaat","Zone_Klimaat");
-			$Bools = str_pad(decbin(substr($data,58,2);), 16, 0, STR_PAD_LEFT);
+			$Bools = str_pad(decbin(substr($data,58,2)), 16, 0, STR_PAD_LEFT);
 
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmd','xVerwarmd',0,"Light"),substr($Bools, 7, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmen','xVerwarmen',0,"xAlarm"),substr($Bools, 6, 1));
@@ -210,7 +210,7 @@
 			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',0,"InputType"),StringTo32Float(substr($data, 64, 4)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"PLC_IPSYMCON","PLC_IPSYMCON");
-			$Bools = str_pad(decbin(substr($data,68,1);), 16, 0, STR_PAD_LEFT);
+			$Bools = str_pad(decbin(substr($data,68,1)), 16, 0, STR_PAD_LEFT);
 
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xLockable','xLockable',0,"Light"),substr($Bools, 7, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xManModeReq','xManModeReq',0,"xAlarm"),substr($Bools, 6, 1));
@@ -218,7 +218,7 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xOKVoorAuto','xOKVoorAuto',0,"xAlarm"),substr($Bools, 4, 1));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"IPSYMCON_plc","IPSYMCON_plc");
-			$Bools = str_pad(decbin(substr($data,70,1);), 16, 0, STR_PAD_LEFT);
+			$Bools = str_pad(decbin(substr($data,70,1)), 16, 0, STR_PAD_LEFT);
 
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xManueleModeOk','xManueleModeOk',0,"Light"),substr($Bools, 7, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAutoModeOK','xAutoModeOK',0,"xAlarm"),substr($Bools, 6, 1));
@@ -242,7 +242,7 @@
 			for($i=0;$i<strlen($String);$i++){
 				$ord=ord($string[$i]);
 				$hexCode = dechex($ord);
-				$hex .=substr('0'.$hexCode, -2)
+				$hex .=substr('0'.$hexCode, -2);
 			}
 			return $hex;
 		}
