@@ -239,8 +239,8 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmen','xVerwarmen',0,"Heated"),substr($Bools, 6, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xGekoeld','xGekoeld',0,"Cooling"),substr($Bools, 5, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xKoelen','xKoelen',0,"Cooled"),substr($Bools, 4, 1));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rPvTemperatuur','rPvTemperatuur',2,"~Tempeature"),$this->StringTo32Float(substr($data, 60, 4)));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',2,"~Tempeature"),$this->StringTo32Float(substr($data, 64, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rPvTemperatuur','rPvTemperatuur',2,"~Temperature"),$this->StringTo32Float(substr($data, 60, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',2,"~Temperature"),$this->StringTo32Float(substr($data, 64, 4)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"PLC_IPSYMCON","PLC_IPSYMCON");
 			$Bools = str_pad(decbin(substr($data,68,1)), 16, 0, STR_PAD_LEFT);
