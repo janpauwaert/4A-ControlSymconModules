@@ -136,7 +136,7 @@
 				IPS_SetParent($eventId, $this->InstanceID);
 				IPS_SetIdent($eventId, 'UpdateZone');
 				IPS_SetName($eventId, "Update values");
-				//IPS_SetHidden($eventId, true);
+				IPS_SetHidden($eventId, true);
 				IPS_SetPosition($eventId, 0);
 			}
 		}
@@ -275,7 +275,7 @@
 		private function stringToHex($String){
 			$hex='';
 			for($i=0;$i<strlen($String);$i++){
-				$ord=ord($string[$i]);
+				$ord=ord($String[$i]);
 				$hexCode = dechex($ord);
 				$hex .=substr('0'.$hexCode, -2);
 			}
