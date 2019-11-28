@@ -233,7 +233,7 @@
 
 
 		private function String2Hex2dec($String){
-			$hex=stringToHex(#String);
+			$hex=stringToHex($String);
 			return hexdec($hex);
 		}
 
@@ -249,7 +249,7 @@
 
 
 		private function StringTo32Float($String){
-			$hex=stringToHex(#String);
+			$hex=stringToHex($String);
 			return hexTo32Float($hex);
 		}
 
