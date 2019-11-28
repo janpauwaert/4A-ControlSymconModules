@@ -237,7 +237,7 @@
 			return hexdec($hex);
 		}
 
-		private funtion stringToHex($string){
+		private function stringToHex($string){
 			$hex='';
 			for($i=0;$i<strlen($String);$i++){
 				$ord=ord($string[$i]);
