@@ -197,15 +197,15 @@
 			$DBnummer = IPS_GetProperty($this->InstanceID, "DBNummer" );
 			$StartAdress = IPS_GetProperty($this->InstanceID, "StartAdress" );
 			$Stringid =  $this->setUpdateS7Connection($this->InstanceID,'Data','Zone_Data',$DBnummer,$StartAdress,$poller);
-
-			$this->setUpdateEvent($this->getS7ValueId($Stringid));
+			if ($Stringid) {
+				$this->setUpdateEvent($this->getS7ValueId($Stringid));
+			}
 
 			$StringData	= GetValueString($this->getS7ValueId($Stringid));
-			//$HexData =
-
-			$this-> StoreDataToIPS($StringData); //
+			if ($StringData){
+				$this-> StoreDataToIPS($StringData); //
 				//$this->SetStatus(106);
-
+			}
 
  			$success = true;
  			return $success;
@@ -298,8 +298,9 @@
 
 		private function setUpdateEvent($variableId)
 		{
-				$eventId = $this->getUpdateEventId('UpdateZone');
 
+				$eventId = $this->getUpdateEventId('UpdateZone');
+				
 				IPS_SetEventTrigger($eventId, 1, $variableId);
 				IPS_SetEventActive($eventId, true);
 				IPS_SetEventScript($eventId, "Zone_ReceiveValues(" . $this->InstanceID . ");");
