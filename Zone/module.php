@@ -196,7 +196,7 @@
  			$poller = IPS_GetProperty($this->InstanceID, "UpdateTime" );
 			$DBnummer = IPS_GetProperty($this->InstanceID, "DBNummer" );
 			$StartAdress = IPS_GetProperty($this->InstanceID, "StartAdress" );
-			$Stringid =  $this->setUpdateS7Connection($this->InstanceID,'ZoneNaam','Zone_Naam',$DBnummer,$StartAdress,$poller);
+			$Stringid =  $this->setUpdateS7Connection($this->InstanceID,'Data','Zone_Data',$DBnummer,$StartAdress,$poller);
 
 			$this->setUpdateEvent($this->getS7ValueId($Stringid));
 
