@@ -229,8 +229,8 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerlicht','xVerlicht',0,"Verlicht"),substr($Bools, 9, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xPaniek','xPaniek',0,"xAlarm"),substr($Bools, 8, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xInbraak','xInbraak',0,"xAlarm"),substr($Bools, 7, 1));
-			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iSfeer','iSfeer',1,"sfeer"),String2Hex2dec(substr($data, 54, 2)));
-			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iLastInput','iLastInput',1,"InputType"),String2Hex2dec(substr($data, 56, 2)));
+			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iSfeer','iSfeer',1,"sfeer"),$this->String2Hex2dec(substr($data, 54, 2)));
+			SetValueInteger($this->CreateVariableByIdent($CategorieID,'iLastInput','iLastInput',1,"InputType"),$this->String2Hex2dec(substr($data, 56, 2)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"ZoneKlimaat","Zone_Klimaat");
 			$Bools = str_pad(decbin(substr($data,58,2)), 16, 0, STR_PAD_LEFT);
@@ -239,8 +239,8 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xVerwarmen','xVerwarmen',0,"Heated"),substr($Bools, 6, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xGekoeld','xGekoeld',0,"Cooling"),substr($Bools, 5, 1));
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xKoelen','xKoelen',0,"Cooled"),substr($Bools, 4, 1));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rPvTemperatuur','rPvTemperatuur',2,"~Tempeature"),StringTo32Float(substr($data, 60, 4)));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',2,"~Tempeature"),StringTo32Float(substr($data, 64, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rPvTemperatuur','rPvTemperatuur',2,"~Tempeature"),$this->StringTo32Float(substr($data, 60, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rSPTemperatuur','rSPTemperatuur',2,"~Tempeature"),$this->StringTo32Float(substr($data, 64, 4)));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"PLC_IPSYMCON","PLC_IPSYMCON");
 			$Bools = str_pad(decbin(substr($data,68,1)), 16, 0, STR_PAD_LEFT);
@@ -259,8 +259,8 @@
 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUnlockReq','xUnlockReq',0),substr($Bools, 4, 1));
 
 			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"Vermogen","Vermogen");
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rActueelVermogen','rActueelVermogen',2,"Power_Watt"),StringTo32Float(substr($data, 72, 4)));
-			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rStroom','rStroom',2,"~Ampere"),StringTo32Float(substr($data, 76, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rActueelVermogen','rActueelVermogen',2,"Power_Watt"),$this->StringTo32Float(substr($data, 72, 4)));
+			SetValueFloat($this->CreateVariableByIdent($CategorieID,'rStroom','rStroom',2,"~Ampere"),$this->StringTo32Float(substr($data, 76, 4)));
 
  		}
 
