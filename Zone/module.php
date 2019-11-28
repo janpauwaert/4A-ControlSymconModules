@@ -283,7 +283,7 @@
 
 		private function StringTo32Float($String){
 			$hex=$this->stringToHex($String);
-			return hexTo32Float($hex);
+			return $this->hexTo32Float($hex);
 		}
 
 		private function hexTo32Float($strHex){
