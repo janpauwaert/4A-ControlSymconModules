@@ -202,6 +202,8 @@
 			}
 
 			$StringData	= GetValueString($this->getS7ValueId($Stringid));
+
+			$this->SendDebug("4A-Control Zone","Zone:".$Stringid."| Value:".$StringData,1);
 			if ($StringData){
 				$this-> StoreDataToIPS($StringData); //
 				//$this->SetStatus(106);
