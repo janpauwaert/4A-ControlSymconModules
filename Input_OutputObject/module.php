@@ -234,12 +234,12 @@
 		   		case 1:
 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOff'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOn'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM ON !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUit','xUit',0,'xUit'),substr($data, 5, 1)); 
@@ -248,12 +248,12 @@
 				case 3:
 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOff'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOn'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM ON !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUit','xUit',0,'xUit'),substr($data, 5, 1)); 
@@ -263,24 +263,24 @@
 				case 2:
 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 21, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectLow'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM LOW !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectHigh'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
 					break;
 				case 4:
 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 21, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectLow'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM LOW !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectHigh'))){
-						IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
+						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
 					break;
