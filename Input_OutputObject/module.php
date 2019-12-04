@@ -64,16 +64,6 @@
 				IPS_SetHidden($eventId, true);
 				IPS_SetPosition($eventId, 0);
 			}	
-
-			if ($this->getUpdateEventId('UpdateInterface') == false)
-			{
-				$eventId = IPS_CreateEvent(0);
-				IPS_SetParent($eventId, $this->InstanceID);
-				IPS_SetIdent($eventId, 'UpdateInterface');
-				IPS_SetName($eventId, "Update values");
-				IPS_SetHidden($eventId, true);
-				IPS_SetPosition($eventId, 0);
-			}
 		}
 
 		public function Destroy()
@@ -232,12 +222,12 @@
  			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"IntefacePLCIPS","Inteface_PLC-IPS");
  			switch ($this->ReadPropertyInteger("InputType" )) {
 		   		case 1:
-					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
+					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 49, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOff'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
- 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
+ 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOn','Alarm_Object_ON',0,'xAlarm'),substr($data, 50, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOn'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM ON !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
@@ -246,39 +236,39 @@
  					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAan','xAan',0,"xAan"),substr($data, 6, 1));
 					break;
 				case 3:
-					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 18, 1));
+					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectOff','Alarm_Object_Off',0,'xAlarm'),substr($data, 50, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOff'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM OFF !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM OFF !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
- 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 17, 1));
+ 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectON','Alarm_Object_ON',0,'xAlarm'),substr($data, 49, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectOn'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM ON !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM ON !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
- 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUit','xUit',0,'xUit'),substr($data, 5, 1)); 
- 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAan','xAan',0,"xAan"),substr($data, 6, 1));
+ 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xUit','xUit',0,'xUit'),substr($data, 37, 1)); 
+ 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAan','xAan',0,"xAan"),substr($data, 38, 1));
 					break;
 
 				case 2:
-					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 21, 1));
+					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 53, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectLow'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM LOW !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
- 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
+ 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 52, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectHigh'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
 					break;
 				case 4:
-					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 21, 1));
+					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectLow','Alarm_Object_Low',0,'xAlarm'),substr($data, 53, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectLow'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM LOW !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM LOW !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
 					}
- 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 20, 1));
+ 					SetValueBoolean($this->CreateVariableByIdent($CategorieID,'AlarmObjectHigh','Alarm_Object_High',0,'xAlarm'),substr($data, 52, 1));
 					if (GetValueBoolean(IPS_GetStatusVariableID($CategorieID,'AlarmObjectHigh'))){
 						//IPSLogger_Err(__file__, sprintf("Object : %s ALARM HIGH !!!",IPS_GetName($this->InstanceID )));
 						WFC_PushNotification ( 34202 /*[Turkeije_17]*/ , '!! ALARM !!' , sprintf("Object : (%s) ALARM HIGH !!!",IPS_GetName($this->InstanceID )) , '' , 0 ) ; 
@@ -286,9 +276,9 @@
 					break;
 			} 
  		
- 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 0, 1));
- 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($data, 1, 1)); 
- 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xMode','xMode',0,'xMode'),substr($data, 4, 1)); 
+ 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xAlarm','xAlarm',0,'xAlarm'),substr($data, 32, 1));
+ 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xOnbAlarm','xOnbAlarm',0,'xOnbAlarm'),substr($data, 33, 1)); 
+ 			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xMode','xMode',0,'xMode'),substr($data, 36, 1)); 
  		}
 
  		Private function StoreActValueToIPS($TargetID)
