@@ -142,7 +142,7 @@
 
  			//if (S7_RequestRead($Intid)){
 			$bData	= GetValueInteger($this->getS7ValueId($Intid)); 
-			$this-> StoreDataToIPS(str_pad(decbin($bData), 32, 0, STR_PAD_LEFT)); //
+			$this-> StoreDataToIPS(str_pad(decbin($bData), 64, 0, STR_PAD_LEFT)); //
 				//$this->SetStatus(106); 
 			
 			// read actual value is type is analog
