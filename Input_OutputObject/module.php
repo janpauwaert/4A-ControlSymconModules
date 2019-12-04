@@ -294,7 +294,7 @@
  		Private function StoreActValueToIPS($TargetID)
  		{
  			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"ActualValuePLCIPS","ActualValue_PLC-IPS");
-			$this->CreateLinkByIdent($CategorieID,'ActualValue','Actual Value',$TargetID)
+			$this->CreateLinkByIdent($CategorieID,'ActualValue','Actual Value',$TargetID);
  			//SetValueFloat($this->CreateVariableByIdent($CategorieID,'ActualValue','Actual Value',2),$data); 
  
  		}
