@@ -159,7 +159,7 @@
 			if (($this->ReadPropertyInteger("InputType" )==2) || ($this->ReadPropertyInteger("InputType" )==4)){
 
 		
-					$this->StoreActValueToIPS(GetValueFloat($this->getS7ValueId($Actid)));
+					$this->StoreActValueToIPS($this->getS7ValueId($Actid));
 					//$this->SetStatus(107);
 					$success = true; 
 
@@ -291,10 +291,11 @@
  			SetValueBoolean($this->CreateVariableByIdent($CategorieID,'xMode','xMode',0,'xMode'),substr($data, 4, 1)); 
  		}
 
- 		Private function StoreActValueToIPS($data)
+ 		Private function StoreActValueToIPS($TargetID)
  		{
  			$CategorieID = $this->CreateCategorieByIdent($this->InstanceID,"ActualValuePLCIPS","ActualValue_PLC-IPS");
- 			SetValueFloat($this->CreateVariableByIdent($CategorieID,'ActualValue','Actual Value',2),$data); 
+			$this->CreateLinkByIdent($CategorieID,'ActualValue','Actual Value',$TargetID)
+ 			//SetValueFloat($this->CreateVariableByIdent($CategorieID,'ActualValue','Actual Value',2),$data); 
  
  		}
 
@@ -338,7 +339,6 @@
 				IPS_SetEventTrigger($eventId, 1, $variableId); 
 				IPS_SetEventActive($eventId, true); 
 				IPS_SetEventScript($eventId, "S7OBJ_ReceiveValues(" . $this->InstanceID . ");"); 
-
 		}
 
 		Private function setUpdateS7Connection($id, $ident,$name, $AreaAddress,$DataType,$Interface,$poller=0)
@@ -439,6 +439,19 @@
 				//IPS_ApplyChanges ( $CatID ) ;  // accepteer nieuwe configuratie 
 			}
 			return $CatID;
+		}
+
+		Private function CreateLinkByIdent($id, $ident, $name,$targetID)
+		{
+			$LinkID = @IPS_GetObjectIDByIdent($ident,$id);
+			if($LinkID === false){
+				$LinkID = IPS_CreateLink();
+				IPS_SetName($LinkID, $name);// noem de link
+				IPS_SetParent ( $LinkID , $id ) ; // sorteer instantie onder dit object
+				IPS_SetIdent ($LinkID, $ident);
+				IPS_SetLinkTargetID($LinkID,$targetID);
+
+			}
 		}
 
 		Private function CreateVariableByIdent($id, $ident, $name, $type, $profile = "")
